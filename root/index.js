@@ -1,46 +1,51 @@
-// Get word from API
+// Global variables
 
-    function getWord() {
+    let selectedWord
 
-        const api = "https://palabras-aleatorias-public-api.herokuapp.com/random"
+// Start game
 
-        fetch(api)
+    function play() {
 
-            .then(response => response.json())
-            //.then(data => printWord(data.body.Word))
-            .then(data => {
+        getWord().then((word) => {
 
-                let word = data.body.word
+            checkLength(word[0])
 
-                do{
-
-                    
-
-                }
-                while(word.length == 5)
-
-
-
-            })
+        })
 
     }
 
-// Print word in HTML
+// Get word from API
 
-    function printWord(word) {
+    const getWord = () => {
 
-        if(word.length == 5) {
+        const api = "https://clientes.api.greenborn.com.ar/public-random-word?c=1&l=5"
 
-            upperWord = word.toUpperCase()
+        return new Promise((resolve, reject) => {
 
-            console.log(upperWord.split(""));
+            fetch(api)
+            .then(response => response.json())
+            .then(data => resolve(data))
+            .catch(error => reject(error))
+
+        })
+
+    }
+
+// Check length for word
+
+    function checkLength(apiWord) {
+
+        if(apiWord.length !=5) {
+
+            play()
 
         }
-        else{
+        else {
 
-            console.log("Buscar de nuevo");
-            getWord()
+            selectedWord = apiWord.toUpperCase()
 
         }
+
+        
 
     }
