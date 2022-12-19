@@ -1,6 +1,7 @@
 // Global variables
 
-    let selectedWord
+    let apiWord
+    let userWord
 
 // Start game
 
@@ -9,6 +10,8 @@
         getWord().then((word) => {
 
             checkLength(word[0])
+
+            inputWord()
 
         })
 
@@ -33,19 +36,39 @@
 
 // Check length for word
 
-    function checkLength(apiWord) {
+    function checkLength(selectedWord) {
 
-        if(apiWord.length !=5) {
+        if(selectedWord.length !=5) {
 
             play()
 
         }
         else {
 
-            selectedWord = apiWord.toUpperCase()
+            apiWord = selectedWord.toUpperCase()
 
         }
 
         
 
     }
+
+// User input word
+
+function inputWord() {
+
+    let count = 0
+
+    window.addEventListener("keydown",function(e){
+    
+        let letter = e.key.toUpperCase()
+    
+        let cell = document.querySelectorAll("#row1 p")
+    
+        cell[count].textContent = letter
+    
+        count++
+    
+    })
+
+}
