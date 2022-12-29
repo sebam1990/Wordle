@@ -1,21 +1,28 @@
 // Global variables
 
-    let apiWord
-    let userWord
+    let tries = 1
+
+    let words = {
+
+        apiWord : "",
+        userWord : "",
+
+    }
+
+// DOM Elements
+
+    const btn = document.querySelector("#send")
+
 
 // Start game
 
-    function play() {
+    window.addEventListener("load", function(){
 
-        getWord().then((word) => {
+        getWord()
 
-            checkLength(word[0])
+        inputWord()
 
-            inputWord()
-
-        })
-
-    }
+    })
 
 // Get word from API
 
@@ -23,52 +30,82 @@
 
         const api = "https://clientes.api.greenborn.com.ar/public-random-word?c=1&l=5"
 
-        return new Promise((resolve, reject) => {
-
-            fetch(api)
+        fetch(api)
             .then(response => response.json())
-            .then(data => resolve(data))
-            .catch(error => reject(error))
-
-        })
-
-    }
-
-// Check length for word
-
-    function checkLength(selectedWord) {
-
-        if(selectedWord.length !=5) {
-
-            play()
-
-        }
-        else {
-
-            apiWord = selectedWord.toUpperCase()
-
-        }
-
-        
+            .then(data => {words.apiWord = data[0].toUpperCase()})
 
     }
 
 // User input word
 
-function inputWord() {
+    const inputWord = () => {
 
-    let count = 0
+        let count = 0
+        const writeCell = document.querySelector('.active').children
 
-    window.addEventListener("keydown",function(e){
-    
-        let letter = e.key.toUpperCase()
-    
-        let cell = document.querySelectorAll("#row1 p")
-    
-        cell[count].textContent = letter
-    
-        count++
-    
+        window.addEventListener("keydown",function(e){
+
+            let letter = e.key.toUpperCase()
+            
+            writeCell[count].textContent = letter
+
+            words.userWord+=letter
+        
+            count++
+
+        })
+
+        return writeCell
+
+    }
+
+// Compare words
+
+    btn.addEventListener("click", function(){
+
+        const readCell = inputWord()
+
+        for(i=0;i<5;i++){
+
+            if(words.apiWord.includes(words.userWord[i]) && words.userWord[i] == words.apiWord[i]){
+
+                readCell[i].classList.add("correct")
+
+            }
+            else if(words.apiWord.includes(words.userWord[i]) && words.userWord[i] != words.apiWord[i]){
+
+                readCell[i].classList.add("wrongPos")
+
+            }
+            else{
+
+                readCell[i].classList.add("error")
+
+            }
+
+        }
+
     })
 
-}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,39 +1,8 @@
-/*let count = 0
+const palabra = "HEROE"
 
-window.addEventListener("keydown",function(e){
+//const prueba = /([A-Z])\p{M}/g.test(palabra)
+const prueba = !/([ÁÉÍÓÚ])\w/g.test(palabra)
 
-    let letter = e.key.toUpperCase()
+const palabraCambio = palabra.replace()
 
-    let cell = document.querySelectorAll("#row1 p")
-
-    //console.log(letter);
-    //console.log(cell[count]);
-
-    cell[count].textContent = letter
-
-    count++
-
-})*/
-
-function inputWord() {
-
-    let count = 0
-
-    window.addEventListener("keydown",function(e){
-    
-        let letter = e.key.toUpperCase()
-    
-        let cell = document.querySelectorAll("#row1 p")
-    
-        //console.log(letter);
-        //console.log(cell[count]);
-    
-        cell[count].textContent = letter
-    
-        count++
-    
-    })
-
-}
-
-inputWord()
+console.log(prueba);

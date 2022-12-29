@@ -57,3 +57,21 @@ main {
         border: 1px solid black;
 
     }
+    
+    .correct{
+
+        background-color:green
+
+    }
+
+    .wrongPos{
+
+        background-color:yellow;
+    
+    }
+
+    .error{
+
+        background-color:darkgray;
+
+    }
