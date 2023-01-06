@@ -2,77 +2,126 @@
 
     let tries = 1
 
-    let words = {
-
-        apiWord : "",
-        userWord : "",
-
-    }
-
-// DOM Elements
-
-    const btn = document.querySelector("#send")
-
-
-// Start game
-
-    window.addEventListener("load", function(){
-
-        getWord()
-
-        inputWord()
-
-    })
-
 // Get word from API
 
-    const getWord = () => {
+    const apiWord = (() => {
 
-        const api = "https://clientes.api.greenborn.com.ar/public-random-word?c=1&l=5"
+        let selectedWord
 
-        fetch(api)
-            .then(response => response.json())
-            .then(data => {words.apiWord = data[0].toUpperCase()})
+        function fetchApi(){
 
-    }
+            const api = "https://clientes.api.greenborn.com.ar/public-random-word?c=1&l=5"
+
+            fetch(api)
+                .then(response => response.json())
+                .then(data => {selectedWord = data[0].toUpperCase()})
+
+        }
+
+        function checkLength(){
+
+            if(selectedWord.length != 5){
+
+                fetchApi()
+
+            }
+
+        }
+
+        function replaceChars(){
+
+            const regex = /["Á"|"É"|"Í"|"Ó"|"Ú"|]/g
+            const accent = selectedWord.match(regex)
+            const index = selectedWord.indexOf(accent)
+
+            if(accent != null){
+
+                switch(selectedWord[index]){
+
+                    case "Á": selectedWord = selectedWord.replace(selectedWord[index],"A")
+                    break
+                    case "É": selectedWord = selectedWord.replace(selectedWord[index],"E")
+                    break
+                    case "Í": selectedWord = selectedWord.replace(selectedWord[index],"I")
+                    break
+                    case "Ó": selectedWord = selectedWord.replace(selectedWord[index],"O")
+                    break
+                    case "Ú": selectedWord = selectedWord.replace(selectedWord[index],"U")
+                    break
+                    default: console.log("Palabra sin accents");
+    
+                }
+
+            }
+
+        }
+
+        function getWord(){
+
+            return selectedWord
+
+        }
+
+        return{fetchApi,checkLength,replaceChars,getWord}
+
+    })()
 
 // User input word
 
-    const inputWord = () => {
+    const userWord = (() => {
 
+        let inputWord = ""
         let count = 0
         const writeCell = document.querySelector('.active').children
 
-        window.addEventListener("keydown",function(e){
+        function input(e){
 
-            let letter = e.key.toUpperCase()
+            const letter = e.key.toUpperCase()
+            const keyCode = e.code
+
+            if(keyCode.includes("Key")){
+
+                writeCell[count].textContent = letter
+
+                inputWord+=letter
             
-            writeCell[count].textContent = letter
+                count++
 
-            words.userWord+=letter
-        
-            count++
+            }
+            else if(keyCode == "Backspace"){
 
-        })
+                writeCell[count-1].textContent = ""
 
-        return writeCell
+                inputWord = inputWord.slice(0,-1)
 
-    }
+                count--
+
+            }
+
+        }
+
+        function getWord(){
+
+            return inputWord
+
+        }
+
+        return {input,getWord}
+
+    })()
 
 // Compare words
 
-    btn.addEventListener("click", function(){
-
-        const readCell = inputWord()
+    const compareWords = () => {
 
         for(i=0;i<5;i++){
 
-            if(words.apiWord.includes(words.userWord[i]) && words.userWord[i] == words.apiWord[i]){
+            if(apiWord.includes(inputWord[i]) && inputWord[i] == apiWord[i]){
 
                 readCell[i].classList.add("correct")
 
             }
-            else if(words.apiWord.includes(words.userWord[i]) && words.userWord[i] != words.apiWord[i]){
+            else if(apiWord.includes(inputWord[i]) && inputWord[i] != apiWord[i]){
 
                 readCell[i].classList.add("wrongPos")
 
@@ -85,7 +134,27 @@
 
         }
 
-    })
+    }
+
+// Events
+
+    // Start game
+        
+        window.addEventListener("load", function(){
+
+            //getWord()
+
+        })
+
+    // Allow writing
+
+        window.addEventListener("keydown",userWord.input)
+
+    // Capture and compare words values
+
+        const btn = document.querySelector("#send")
+
+        btn.addEventListener("click",compareWords)
 
 
 
