@@ -1,0 +1,19 @@
+{
+  "name": "wordle",
+  "version": "0.0.1",
+  "description": "Wordle game clon",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sebam1990/Wordle.git"
+  },
+  "author": "Sebastián Mariño",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sebam1990/Wordle/issues"
+  },
+  "homepage": "https://github.com/sebam1990/Wordle#readme"
+}
