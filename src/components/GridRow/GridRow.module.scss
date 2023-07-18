@@ -1,0 +1,25 @@
+@import '../../index.module.scss';
+@import '../../fonts/franklin-normal-700/stylesheet.css';
+
+.row{
+
+    width:fit-content;
+    /*margin:0.15625rem auto;*/
+    margin:0.3125rem auto;
+
+}
+
+    .rowLetter{
+
+        display:inline-flex;
+        width:3.875rem;
+        height:3.875rem;
+        /*margin:0rem 0.15625rem;*/
+        margin:0rem 0.3125rem;
+        border:solid 2px $gray;
+        font-family:"nytfranklinbold";
+        font-size:2rem;
+        align-items:center;
+        justify-content:center;
+
+    }

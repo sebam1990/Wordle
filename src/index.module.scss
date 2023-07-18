@@ -1,0 +1,33 @@
+// Global styles
+
+    *{
+
+        margin:0rem;
+        padding:0rem;
+        font-size:16px;
+
+    }
+
+// Vars
+
+    $gray: #d3d6da;
+
+// Fonts
+
+    /*@include font-face {
+        font-family: ('karnakpro-black', './fonts/karnakpro-black.ttf')
+    }*/
+    
+
+.flex{
+
+    display:flex;
+
+}
+
+.flex_30{
+
+    width:30%;
+
+}
+
