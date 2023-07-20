@@ -11,6 +11,7 @@
 // Vars
 
     $gray: #d3d6da;
+    $darkGray: #878a8c;
 
 // Fonts
 
@@ -22,6 +23,14 @@
 .flex{
 
     display:flex;
+
+}
+
+.flexCenter{
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
 
 }
 

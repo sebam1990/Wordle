@@ -3,23 +3,38 @@
 
 .row{
 
-    width:fit-content;
-    /*margin:0.15625rem auto;*/
-    margin:0.3125rem auto;
+    display: inline-flex;
+    width:21.875rem;
+    margin:0.3125rem 0rem;
 
 }
 
     .rowLetter{
 
-        display:inline-flex;
         width:3.875rem;
         height:3.875rem;
-        /*margin:0rem 0.15625rem;*/
         margin:0rem 0.3125rem;
-        border:solid 2px $gray;
+        border:solid 2px;
+        border-color:$gray;
         font-family:"nytfranklinbold";
         font-size:2rem;
-        align-items:center;
-        justify-content:center;
+
+    }
+
+    @keyframes letterAnimation{
+
+        0% {transform:scale(1); border-color:$gray}
+
+        50% {transform:scale(1.15); border-color:$darkGray}
+
+        100% {transform:scale(1); border-color:$darkGray}
+
+    }
+
+    .rowLetterAnimation{
+
+        animation-name:letterAnimation;
+        animation-duration:0.1s;
+        animation-fill-mode:forwards;
 
     }

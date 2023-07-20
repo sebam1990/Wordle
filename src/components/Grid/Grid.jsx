@@ -5,37 +5,80 @@ import { useEffect, useState } from "react"
 
 const Grid = (props) => {
 
-    const [playerWord, setPlayerWord] = useState(["","","","","",""])
-
-    /*const [playerWord, setPlayerWord] = useState({
-
-        
-
-    })*/
-
     const intent = props.activeRow
 
-    let inputWord = ""
+    const [playerWord1, setPlayerWord1] = useState("")
+    const [playerWord2, setPlayerWord2] = useState("")
+    const [playerWord3, setPlayerWord3] = useState("")
+    const [playerWord4, setPlayerWord4] = useState("")
+    const [playerWord5, setPlayerWord5] = useState("")
+    const [playerWord6, setPlayerWord6] = useState("")
+
+    const [letter, setLetter] = useState(0)
 
     const writeWord = (e) => {
 
-        if(inputWord.length < 5){
+        const key = e.key
+        const keyCode = e.code
 
-            const key = e.key
+        //console.log("key",e);
 
-            const playerWordState = playerWord
-    
-            inputWord = inputWord + key.toUpperCase()
-    
-            playerWordState[intent] = inputWord
+        if(keyCode.includes("Key") && letter < 5){
 
-            //let playerWordIndex = "intent" + intent
+            switch(intent){
 
-            //playerWordState[playerWordIndex] = inputWord
+                case 1:
+                    setPlayerWord1(playerWord1 + key.toUpperCase())
+                break;
+                case 2:
+                    setPlayerWord2(playerWord2 + key.toUpperCase())
+                break;
+                case 3:
+                    setPlayerWord3(playerWord3 + key.toUpperCase())
+                break;
+                case 4:
+                    setPlayerWord4(playerWord4 + key.toUpperCase())
+                break;
+                case 5:
+                    setPlayerWord5(playerWord5 + key.toUpperCase())
+                break;
+                case 6:
+                    setPlayerWord6(playerWord6 + key.toUpperCase())
+                break;
+                default: console.log("Error")
 
-            setPlayerWord(playerWordState)
+            }
 
-            console.log(playerWord);
+            setLetter(letter + 1)
+
+        }
+        else if(keyCode.includes("Backspace")){
+
+            switch(intent){
+
+                case 1:
+                    setPlayerWord1(playerWord1.slice(0, -1))
+                break;
+                case 2:
+                    setPlayerWord2(playerWord2.slice(0, -1))
+                break;
+                case 3:
+                    setPlayerWord3(playerWord3.slice(0, -1))
+                break;
+                case 4:
+                    setPlayerWord4(playerWord4.slice(0, -1))
+                break;
+                case 5:
+                    setPlayerWord5(playerWord5.slice(0, -1))
+                break;
+                case 6:
+                    setPlayerWord6(playerWord6.slice(0, -1))
+                break;
+                default: console.log("Error")
+
+            }
+
+            setLetter(letter - 1)
 
         }
 
@@ -43,9 +86,9 @@ const Grid = (props) => {
 
     useEffect(() => {
 
-        //window.onkeydown = writeWord
+        window.onkeydown = writeWord
 
-        window.onkeypress = writeWord
+        //window.onkeypress = writeWord
     
     })
 
@@ -53,25 +96,17 @@ const Grid = (props) => {
 
         <section className={styles.homeGrid}>
             
-            <GridRow activeRow={intent} rowWord={playerWord[0]}></GridRow>
+            <GridRow rowWord={playerWord1}></GridRow>
 
-            <GridRow rowWord={playerWord[1]}></GridRow>
+            <GridRow rowWord={playerWord2}></GridRow>
 
-            <GridRow rowWord={playerWord[2]}></GridRow>
+            <GridRow rowWord={playerWord3}></GridRow>
 
-            <GridRow rowWord={playerWord[3]}></GridRow>
+            <GridRow rowWord={playerWord4}></GridRow>
 
-            <GridRow rowWord={playerWord[4]}></GridRow>
+            <GridRow rowWord={playerWord5}></GridRow>
 
-            {
-
-                
-                
-
-            }
-
-
-            
+            <GridRow rowWord={playerWord6}></GridRow>
 
         </section>
 
