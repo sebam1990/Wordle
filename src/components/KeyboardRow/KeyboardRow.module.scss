@@ -1,0 +1,36 @@
+@import '../../index.module.scss';
+@import '../../fonts/franklin-normal-700/stylesheet.css';
+
+.keyboardRow{
+
+    width:100%;
+    margin-bottom:0.5rem;
+
+}
+
+    .keyBtn{
+
+        width:2.6875rem;
+        height:3.625rem;
+        margin:0rem 0.1875rem;
+        background-color:$gray;
+        border:none;
+        border-radius:4px;
+        cursor:pointer;
+        font-family:"nytfranklinbold";
+        font-size:1.25rem;
+
+    }
+
+    .enterKey{
+
+        width:4.0881rem;
+        font-size:0.75rem;
+
+    }
+
+    .backKey{
+
+        width:4.0881rem;
+
+    }

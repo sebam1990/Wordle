@@ -1,7 +1,8 @@
 import styles from './Home.module.scss';
 
 import Grid from '../../components/Grid/Grid.jsx';
-import { useEffect } from 'react';
+import Keyboard from '../../components/Keyboard/Keyboard.jsx';
+
 
 const Home = () => {
 
@@ -13,11 +14,7 @@ const Home = () => {
 
             <Grid activeRow={intent}></Grid>
 
-            <section className={styles.homeKeyboard}>
-
-                <button>ENVIAR</button>
-
-            </section>
+            <Keyboard></Keyboard>
 
         </main>
 
