@@ -2,8 +2,6 @@ import styles from './Keyboard.module.scss'
 
 import KeyboardRow from '../KeyboardRow/KeyboardRow.jsx'
 
-import {useContext} from 'react'
-import {UserContext}from '../../context/UserContext'
 
 const Keyboard = () => {
 

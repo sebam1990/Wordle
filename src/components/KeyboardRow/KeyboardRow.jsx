@@ -1,7 +1,8 @@
 // Import dependencies
 
     import {useContext} from 'react';
-    import {UserContext} from '../../context/UserContext';
+    import {ConfigContext} from '../../context/CreateContext';
+
 
 // Import styles
 
@@ -14,7 +15,7 @@
 
 const KeyboardRow = (props) => {
 
-    const context = useContext(UserContext);
+    const context = useContext(ConfigContext);
 
     const lang = context.lang;
 

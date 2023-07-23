@@ -1,8 +1,13 @@
-import { useState } from 'react'
-import { UserContext } from "./UserContext"
-import Header from "../components/Header/Header.jsx"
+// Import dependencies
 
-const UserProvider = ({ children }) => {
+    import { useState } from 'react'
+
+// Import context
+
+    import {ConfigContext} from "./CreateContext.jsx"
+
+
+const ConfigProvider = ({ children }) => {
 
     // Set default language
 
@@ -34,16 +39,14 @@ const UserProvider = ({ children }) => {
 
     return(
 
-        <UserContext.Provider value={{lang: lang, changeLang}}>
-
-            <Header></Header>
+        <ConfigContext.Provider value={{lang: lang, changeLang}}>
 
             {children}
             
-        </UserContext.Provider>
+        </ConfigContext.Provider>
 
     )
 
 }
 
-export default UserProvider;
+export default ConfigProvider;

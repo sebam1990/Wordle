@@ -1,15 +1,16 @@
-// Import dependecies
-
-    import { useEffect, useContext, useState } from "react";
-    import { UserContext } from "./context/UserContext";
+import { Link } from "react-router-dom";
 
 const Index = () => {
 
     return (
 
-        <h1>Wordle</h1>
-
+        <>
         
+            <h1>Wordle</h1>
+
+            <Link to="/play">Jugar</Link>
+        
+        </>
         
     )
 

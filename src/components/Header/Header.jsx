@@ -1,7 +1,7 @@
 // Import dependencies
 
     import { useContext } from 'react'
-    import { UserContext } from '../../context/UserContext'
+    import { ConfigContext } from '../../context/CreateContext.jsx'
 
 // Import styles
 
@@ -18,7 +18,7 @@ const Header = () => {
 
     // useContext for language change
 
-        const context = useContext(UserContext)
+        const context = useContext(ConfigContext)
 
         const changeLang = context.changeLang;
 

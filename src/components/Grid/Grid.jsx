@@ -1,13 +1,11 @@
 // Import dependencies
 
-    import { useEffect, useState, useContext } from "react"
+    import { useEffect, useState } from "react"
 
 // Import styles
 
     import GridRow from "../GridRow/GridRow"
     import styles from "./Grid.module.scss"
-
-    import {UserContext} from "../../context/UserContext"
 
 const Grid = (props) => {
 
