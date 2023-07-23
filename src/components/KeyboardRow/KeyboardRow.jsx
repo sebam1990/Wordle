@@ -1,13 +1,24 @@
-import globalStyles from '../../index.module.scss'
-import styles from './KeyboardRow.module.scss';
+// Import dependencies
 
-import {MdOutlineBackspace} from 'react-icons/md'
+    import {useContext} from 'react';
+    import {UserContext} from '../../context/UserContext';
+
+// Import styles
+
+    import globalStyles from '../../index.module.scss'
+    import styles from './KeyboardRow.module.scss';
+
+// Import icons
+
+    import {MdOutlineBackspace} from 'react-icons/md'
 
 const KeyboardRow = (props) => {
 
-    const keys = props.keysArray;
+    const context = useContext(UserContext);
 
-    console.log(keys);
+    const lang = context.lang;
+
+    const keys = props.keysArray;
 
     return(
 
@@ -17,9 +28,11 @@ const KeyboardRow = (props) => {
 
                 keys.map((letter, index) => {
 
-                    const btn = letter == "ENVIAR" ? <button key={index} className={`${styles.keyBtn} ${styles.enterKey}`} code={"Key"+letter}>{letter}</button> : 
+                    const btn = letter == "ENVIAR" ? <button key={index} className={`${styles.keyBtn} ${styles.enterKey}`} code={"Key"+letter}>{lang == "EN" ? "ENTER" : letter}</button> : 
                     
-                    (letter == "Backspace" ? <button key={index} className={`${styles.keyBtn} ${styles.backKey}`} code={"Key"+letter}><MdOutlineBackspace size={20}/></button> : <button key={index} className={styles.keyBtn} code={"Key"+letter}>{letter}</button>)
+                    (letter == "Backspace" ? <button key={index} className={`${styles.keyBtn} ${styles.backKey}`} code={"Key"+letter}><MdOutlineBackspace size={20}/></button> : 
+                    
+                    (letter == "Ñ" && lang == "EN" ? undefined : <button key={index} className={styles.keyBtn} code={"Key"+letter}>{letter}</button>))
                     
                     return btn
 

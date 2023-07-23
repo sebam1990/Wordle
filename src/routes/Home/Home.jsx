@@ -1,8 +1,11 @@
-import styles from './Home.module.scss';
+// Import styles
 
-import Grid from '../../components/Grid/Grid.jsx';
-import Keyboard from '../../components/Keyboard/Keyboard.jsx';
+    import styles from './Home.module.scss';
 
+// Import components
+
+    import Grid from '../../components/Grid/Grid.jsx';
+    import Keyboard from '../../components/Keyboard/Keyboard.jsx';
 
 const Home = () => {
 

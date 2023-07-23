@@ -1,51 +1,64 @@
-import globalStyles from '../../index.module.scss'
-import styles from './Header.module.scss'
+// Import dependencies
 
-// Import icons
+    import { useContext } from 'react'
+    import { UserContext } from '../../context/UserContext'
 
-import {MdHelpOutline} from "react-icons/md"
-import {IoStatsChartOutline} from "react-icons/io5"
-import {BsFillGearFill} from "react-icons/bs"
+// Import styles
 
-// Import external components
+    import globalStyles from '../../index.module.scss'
+    import styles from './Header.module.scss'
 
-import { Switch, Space } from 'antd'
+// Import icons & images
+
+    import {MdHelpOutline} from "react-icons/md"
+    import {IoStatsChartOutline} from "react-icons/io5"
+    import {BsFillGearFill} from "react-icons/bs"
 
 const Header = () => {
 
+    // useContext for language change
+
+        const context = useContext(UserContext)
+
+        const changeLang = context.changeLang;
+
+        const lang = context.lang
+    
+    // Get url for show or hidden header
+
+        const url = window.location.pathname
+
     return(
 
-            <header className={`${globalStyles.flex} ${styles.header}`}>
+            url == "/" ? undefined :
 
-                <section className={`${globalStyles.flex} ${globalStyles.flex_30} ${styles.headerLang}`}>
+                <header className={`${globalStyles.flex} ${styles.header}`}>
 
-                    <Space direction="vertical" size={40}>
+                    <section className={`${globalStyles.flex} ${globalStyles.flex_30} ${styles.headerLang}`}>
 
-                        <Switch checkedChildren="ES" unCheckedChildren="EN" defaultChecked={true} className={styles.headerSwitch}/>
+                        {lang == "ES" ? <button className={`${styles.headerSwitch} ${styles.switchEsp}`} onClick={changeLang}></button> : <button className={`${styles.headerSwitch} ${styles.switchEng}`} onClick={changeLang}></button>}
 
-                    </Space>
+                    </section>
 
-                </section>
+                    <section className={`${globalStyles.flex} ${globalStyles.flex_30} ${styles.headerTitle}`}>
 
-                <section className={`${globalStyles.flex} ${globalStyles.flex_30} ${styles.headerTitle}`}>
+                        <h1 className={styles.headerH1}>Wordle</h1>
 
-                    <h1 className={styles.headerH1}>Wordle</h1>
+                    </section>
 
-                </section>
+                    <nav className={`${globalStyles.flex} ${globalStyles.flex_30} ${styles.headerNav}`}>
 
-                <nav className={`${globalStyles.flex} ${globalStyles.flex_30} ${styles.headerNav}`}>
+                        <button className={styles.headerBtn}> <MdHelpOutline size={28} />  </button>
 
-                    <button className={styles.headerBtn}> <MdHelpOutline size={28} />  </button>
+                        <button className={styles.headerBtn}> <IoStatsChartOutline size={28}/>  </button>
 
-                    <button className={styles.headerBtn}> <IoStatsChartOutline size={28}/>  </button>
+                        <button className={styles.headerBtn}> <BsFillGearFill size={28}/> </button>
 
-                    <button className={styles.headerBtn}> <BsFillGearFill size={28}/> </button>
+                        <button className={styles.loginBtn}>{lang == "ES" ? "Iniciar Sesión" : "Login"}</button>
 
-                    <button className={styles.loginBtn}>Iniciar sesión</button>
+                    </nav>
 
-                </nav>
-
-            </header>
+                </header>
 
     )
 
