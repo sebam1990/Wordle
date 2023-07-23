@@ -33,8 +33,6 @@ const ConfigProvider = ({ children }) => {
 
                 lang == "ES" ? setLang("EN") : setLang("ES")
 
-                console.log(lang);
-
         }
 
     return(

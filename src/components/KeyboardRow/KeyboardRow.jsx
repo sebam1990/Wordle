@@ -1,8 +1,7 @@
 // Import dependencies
 
     import {useContext} from 'react';
-    import {ConfigContext} from '../../context/CreateContext';
-
+    import {ConfigContext, PlayContext} from '../../context/CreateContext';
 
 // Import styles
 
@@ -15,11 +14,23 @@
 
 const KeyboardRow = (props) => {
 
-    const context = useContext(ConfigContext);
+    // useContext
 
-    const lang = context.lang;
+        const configcontext = useContext(ConfigContext)
 
-    const keys = props.keysArray;
+        const playContext = useContext(PlayContext)
+
+    // Get context language
+
+        const lang = configcontext.lang;
+
+    // Get props
+
+        const keys = props.keysArray;
+
+    // Get input function
+
+        const writeWord = playContext.writeWord;
 
     return(
 
@@ -29,11 +40,11 @@ const KeyboardRow = (props) => {
 
                 keys.map((letter, index) => {
 
-                    const btn = letter == "ENVIAR" ? <button key={index} className={`${styles.keyBtn} ${styles.enterKey}`} code={"Key"+letter}>{lang == "EN" ? "ENTER" : letter}</button> : 
+                    const btn = letter == "ENVIAR" ? <button key={index} className={`${styles.keyBtn} ${styles.enterKey}`} id={"Key"+letter}>{lang == "EN" ? "ENTER" : letter}</button> : 
                     
-                    (letter == "Backspace" ? <button key={index} className={`${styles.keyBtn} ${styles.backKey}`} code={"Key"+letter}><MdOutlineBackspace size={20}/></button> : 
+                    (letter == "Backspace" ? <button key={index} className={`${styles.keyBtn} ${styles.backKey}`} id={letter} onClick={writeWord}><MdOutlineBackspace size={20}/></button> : 
                     
-                    (letter == "Ñ" && lang == "EN" ? undefined : <button key={index} className={styles.keyBtn} code={"Key"+letter}>{letter}</button>))
+                    (letter == "Ñ" && lang == "EN" ? undefined : <button key={index} className={styles.keyBtn} id={"Key"+letter} onClick={writeWord}>{letter}</button>))
                     
                     return btn
 

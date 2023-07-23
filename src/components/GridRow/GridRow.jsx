@@ -1,9 +1,11 @@
-import globalStyles from '../../index.module.scss'
-import styles from './GridRow.module.scss'
+// Import styles
+
+    import globalStyles from '../../index.module.scss'
+    import styles from './GridRow.module.scss'
 
 const GridRow = (props) => {
 
-    const playerWord = props.rowWord;
+    const playerWord = props.rowWord
 
     return(
 
