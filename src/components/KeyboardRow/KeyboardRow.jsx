@@ -32,6 +32,10 @@ const KeyboardRow = (props) => {
 
         const writeWord = playContext.writeWord;
 
+    // Get compare words function
+
+        const compareWords = playContext[0].compareWords;
+        
     return(
 
         <section className={`${globalStyles.flexCenter} ${styles.keyboardRow}`}>
@@ -40,7 +44,7 @@ const KeyboardRow = (props) => {
 
                 keys.map((letter, index) => {
 
-                    const btn = letter == "ENVIAR" ? <button key={index} className={`${styles.keyBtn} ${styles.enterKey}`} id={"Key"+letter}>{lang == "EN" ? "ENTER" : letter}</button> : 
+                    const btn = letter == "ENVIAR" ? <button key={index} className={`${styles.keyBtn} ${styles.enterKey}`} id={"Key"+letter} onClick={compareWords}>{lang == "EN" ? "ENTER" : letter}</button> : 
                     
                     (letter == "Backspace" ? <button key={index} className={`${styles.keyBtn} ${styles.backKey}`} id={letter} onClick={writeWord}><MdOutlineBackspace size={20}/></button> : 
                     
