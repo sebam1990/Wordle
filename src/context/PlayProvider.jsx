@@ -8,10 +8,12 @@
     import Header from '../components/Header/Header.jsx'
 
 const PlayProvider = ({children}) => {
-    
-    // playWord object
 
-        const playWord = {
+    const chance = 1
+    
+    // playerWord object
+
+        const playerWord = {
             
             1 : "",
             2 : "",
@@ -22,9 +24,23 @@ const PlayProvider = ({children}) => {
 
         }
 
+    // Default context functions
+
+        const compareWords = () => {
+
+            return"Default compareWords function from PlayProvider"
+
+        }
+
+        const writeWord = () => {
+            
+            return "Default writeWord function from PlayProvider"
+        
+        }
+
     // Context state
 
-        const [playProvider, setPlayProvider] = useState({playWord}) 
+        const [playProvider, setPlayProvider] = useState({playerWord: playerWord, chance: chance, writeWord: writeWord, compareWords: compareWords}) 
 
     return(
 

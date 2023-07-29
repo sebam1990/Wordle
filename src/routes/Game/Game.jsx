@@ -45,23 +45,24 @@ const Game = () => {
 
     // Compare words function
 
-        const compareWords = () => {
+        const compareWords = (e) => {
 
             const dayWord = dbWord()
 
-            const playWord = playContext.playWord[0]
+            const playerWord = playContext.playerWord[0]
 
             console.log(dayWord)
 
-            console.log(playWord)
-
+            console.log(playerWord)
         }
 
         useEffect(() => {
 
-            setPlayContext({...playContext,compareWords})
+            // Update compareWord function in PlayContext
 
-        },[])
+                playContext.compareWords = compareWords
+
+        })
 
     return(
 

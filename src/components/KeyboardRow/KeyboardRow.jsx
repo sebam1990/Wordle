@@ -16,25 +16,23 @@ const KeyboardRow = (props) => {
 
     // useContext
 
-        const configcontext = useContext(ConfigContext)
+        const configContext = useContext(ConfigContext)
 
-        const playContext = useContext(PlayContext)
+        const [playContext, setPlayContext] = useContext(PlayContext)
 
     // Get context language
 
-        const lang = configcontext.lang;
+        const lang = configContext.lang;
+    
+    // Set enter innter text
+
+        let enterText = ""
+
+        lang == "ES" ? enterText = "ENVIAR" : enterText = "ENTER"
 
     // Get props
 
         const keys = props.keysArray;
-
-    // Get input function
-
-        const writeWord = playContext.writeWord;
-
-    // Get compare words function
-
-        const compareWords = playContext[0].compareWords;
         
     return(
 
@@ -44,13 +42,26 @@ const KeyboardRow = (props) => {
 
                 keys.map((letter, index) => {
 
-                    const btn = letter == "ENVIAR" ? <button key={index} className={`${styles.keyBtn} ${styles.enterKey}`} id={"Key"+letter} onClick={compareWords}>{lang == "EN" ? "ENTER" : letter}</button> : 
-                    
-                    (letter == "Backspace" ? <button key={index} className={`${styles.keyBtn} ${styles.backKey}`} id={letter} onClick={writeWord}><MdOutlineBackspace size={20}/></button> : 
-                    
-                    (letter == "Ñ" && lang == "EN" ? undefined : <button key={index} className={styles.keyBtn} id={"Key"+letter} onClick={writeWord}>{letter}</button>))
-                    
-                    return btn
+                    if(letter == "ENVIAR"){
+
+                        return <button key={index} className={`${styles.keyBtn} ${styles.enterKey}`} id={"Key"+letter} onClick={(e) => {playContext.compareWords(e)}}>{enterText}</button>
+
+                    }
+                    else if(letter == "Backspace"){
+
+                        return <button key={index} className={`${styles.keyBtn} ${styles.backKey}`} id={letter} onClick={(e) => {playContext.writeWord(e)}}> <MdOutlineBackspace size={20}/> </button>
+
+                    }
+                    else if(letter == "Ñ" && lang == "EN"){
+
+                        return undefined
+
+                    }
+                    else{
+
+                        return <button key={index} className={styles.keyBtn} id={"Key"+letter} onClick={(e) => {playContext.writeWord(e)}}>{letter}</button>
+
+                    }
 
                 })
 

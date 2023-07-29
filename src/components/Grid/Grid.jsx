@@ -17,24 +17,17 @@ const Grid = () => {
 
         const [playContext, setPlayContext] = useContext(PlayContext)
 
-        let copyContext = {...playContext}
+        const copyPlayContext = {...playContext}
 
     // General vars
 
-        // Number of actual chance
+        // Actual chance
 
-            const chance = 1
+            const chance = playContext.chance
 
-        // States for words inputs by player
+        // PlayerWord
 
-            const [playerWord1, setPlayerWord1] = useState([])
-            const [playerWord2, setPlayerWord2] = useState([])
-            const [playerWord3, setPlayerWord3] = useState([])
-            const [playerWord4, setPlayerWord4] = useState([])
-            const [playerWord5, setPlayerWord5] = useState([])
-            const [playerWord6, setPlayerWord6] = useState([])
-
-            const [state, setState] = useState(["", "", "", "", "", ""])
+            const playerWord = playContext.playerWord[chance]
 
         // State for letter number
 
@@ -44,6 +37,7 @@ const Grid = () => {
 
             let key = undefined
             let keyCode = undefined
+
 
     // Player input word function
 
@@ -56,22 +50,22 @@ const Grid = () => {
                 switch(chance){
 
                     case 1:
-                        addCase(playerWord1, chance)
+                        addCase(chance)
                     break;
                     case 2:
-                        addCase(playerWord2, chance)
+                        addCase(chance)
                     break;
                     case 3:
-                        addCase(playerWord3, chance)
+                        addCase(chance)
                     break;
                     case 4:
-                        addCase(playerWord4, chance)
+                        addCase(chance)
                     break;
                     case 5:
-                        addCase(playerWord5, chance)
+                        addCase(chance)
                     break;
                     case 6:
-                        addCase(playerWord6, chance)
+                        addCase(chance)
                     break;
                     default: console.log("Error")
 
@@ -80,27 +74,27 @@ const Grid = () => {
                 setLetter(letter + 1)
 
             }
-            else if(keyCode.includes("Backspace")){
+            else if(keyCode.includes("Backspace") && letter > 0){
 
                 switch(chance){
 
                     case 1:
-                        removeCase(playerWord1, chance)
+                        removeCase(chance)
                     break;
                     case 2:
-                        removeCase(playerWord2, chance)
+                        removeCase(chance)
                     break;
                     case 3:
-                        removeCase(playerWord3, chance)
+                        removeCase(chance)
                     break;
                     case 4:
-                        removeCase(playerWord4, chance)
+                        removeCase(chance)
                     break;
                     case 5:
-                        removeCase(playerWord5, chance)
+                        removeCase(chance)
                     break;
                     case 6:
-                        removeCase(playerWord6, chance)
+                        removeCase(chance)
                     break;
                     default: console.log("Error")
 
@@ -114,69 +108,53 @@ const Grid = () => {
 
     // Function to run in any case of add switch
 
-        const addCase = (word, chance) => {
+        const addCase = (chance) => {
 
-            word.push(key.toUpperCase())
+            copyPlayContext.playerWord[chance] = copyPlayContext.playerWord[chance] + key.toUpperCase()
 
-            copyContext.playWord[chance] = word.join("")
-
-            setPlayContext(copyContext)
-
-            console.log("add",playContext);
+            setPlayContext(copyPlayContext)
 
         }
 
     // Function to run in any case of add switch
 
-        const removeCase = (word, chance) => {
+        const removeCase = (chance) => {
 
-            word.pop()
+            copyPlayContext.playerWord[chance] = copyPlayContext.playerWord[chance].slice(0, -1)
 
-            copyContext.playWord[chance] = word.join("")
-
-            setPlayContext(copyContext)
-
-            console.log("remove",playContext)
+            setPlayContext(copyPlayContext)
 
         }
-const cs = {...state}
-    const estado = () => {
-
-        //console.log(state);
-        cs[0] = cs[0] + "A"
-        console.log("cs",cs)
-        setState(cs)
-        console.log(state);
-
-    }
 
     // useEffect
 
         useEffect(() => {
 
-            // Set event at keyboard key press
+            // Run writeWord function when keydown or click on keyboard
 
-                window.onkeydown = writeWord
-        
+                window.onkeydown = writeWord;
+
+            // Update writeWord function in PlayerContext
+
+                playContext.writeWord = writeWord
+
         })
 
     return(
 
         <section className={styles.homeGrid}>
             
-            <GridRow></GridRow>
+            <GridRow rowWord={playContext.playerWord[1]}></GridRow>
 
-            <GridRow></GridRow>
+            <GridRow rowWord={playContext.playerWord[2]}></GridRow>
 
-            <GridRow></GridRow>
+            <GridRow rowWord={playContext.playerWord[3]}></GridRow>
 
-            <GridRow></GridRow>
+            <GridRow rowWord={playContext.playerWord[4]}></GridRow>
 
-            <GridRow></GridRow>
+            <GridRow rowWord={playContext.playerWord[5]}></GridRow>
 
-            <GridRow></GridRow>
-
-            <button onClick={estado}>Estado</button>
+            <GridRow rowWord={playContext.playerWord[6]}></GridRow>
 
         </section>
 
