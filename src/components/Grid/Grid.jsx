@@ -21,13 +21,13 @@ const Grid = () => {
 
     // General vars
 
-        // Actual chance
+        // Actual guess
 
-            const chance = playContext.chance
+            const guess = playContext.guess
 
         // PlayerWord
 
-            const playerWord = playContext.playerWord[chance]
+            const playerWord = playContext.playerWord[guess]
 
         // State for letter number
 
@@ -47,25 +47,25 @@ const Grid = () => {
 
             if(keyCode.includes("Key") && letter < 5){
 
-                switch(chance){
+                switch(guess){
 
                     case 1:
-                        addCase(chance)
+                        addCase(guess)
                     break;
                     case 2:
-                        addCase(chance)
+                        addCase(guess)
                     break;
                     case 3:
-                        addCase(chance)
+                        addCase(guess)
                     break;
                     case 4:
-                        addCase(chance)
+                        addCase(guess)
                     break;
                     case 5:
-                        addCase(chance)
+                        addCase(guess)
                     break;
                     case 6:
-                        addCase(chance)
+                        addCase(guess)
                     break;
                     default: console.log("Error")
 
@@ -76,25 +76,25 @@ const Grid = () => {
             }
             else if(keyCode.includes("Backspace") && letter > 0){
 
-                switch(chance){
+                switch(guess){
 
                     case 1:
-                        removeCase(chance)
+                        removeCase(guess)
                     break;
                     case 2:
-                        removeCase(chance)
+                        removeCase(guess)
                     break;
                     case 3:
-                        removeCase(chance)
+                        removeCase(guess)
                     break;
                     case 4:
-                        removeCase(chance)
+                        removeCase(guess)
                     break;
                     case 5:
-                        removeCase(chance)
+                        removeCase(guess)
                     break;
                     case 6:
-                        removeCase(chance)
+                        removeCase(guess)
                     break;
                     default: console.log("Error")
 
@@ -108,9 +108,11 @@ const Grid = () => {
 
     // Function to run in any case of add switch
 
-        const addCase = (chance) => {
+        const addCase = (guess) => {
 
-            copyPlayContext.playerWord[chance] = copyPlayContext.playerWord[chance] + key.toUpperCase()
+            copyPlayContext.playerWord[guess] = copyPlayContext.playerWord[guess] + key.toUpperCase()
+
+            copyPlayContext.letterResults[guess][letter] = "idle"
 
             setPlayContext(copyPlayContext)
 
@@ -118,9 +120,11 @@ const Grid = () => {
 
     // Function to run in any case of add switch
 
-        const removeCase = (chance) => {
+        const removeCase = (guess) => {
 
-            copyPlayContext.playerWord[chance] = copyPlayContext.playerWord[chance].slice(0, -1)
+            copyPlayContext.playerWord[guess] = copyPlayContext.playerWord[guess].slice(0, -1)
+
+            copyPlayContext.letterResults[guess][letter-1] = "empty"
 
             setPlayContext(copyPlayContext)
 
@@ -144,17 +148,17 @@ const Grid = () => {
 
         <section className={styles.homeGrid}>
             
-            <GridRow rowWord={playContext.playerWord[1]}></GridRow>
+            <GridRow rowWord={playContext.playerWord[1]} cellState={playContext.letterResults[1]}></GridRow>
 
-            <GridRow rowWord={playContext.playerWord[2]}></GridRow>
+            <GridRow rowWord={playContext.playerWord[2]} cellState={playContext.letterResults[2]}></GridRow>
 
-            <GridRow rowWord={playContext.playerWord[3]}></GridRow>
+            <GridRow rowWord={playContext.playerWord[3]} cellState={playContext.letterResults[3]}></GridRow>
 
-            <GridRow rowWord={playContext.playerWord[4]}></GridRow>
+            <GridRow rowWord={playContext.playerWord[4]} cellState={playContext.letterResults[4]}></GridRow>
 
-            <GridRow rowWord={playContext.playerWord[5]}></GridRow>
+            <GridRow rowWord={playContext.playerWord[5]} cellState={playContext.letterResults[5]}></GridRow>
 
-            <GridRow rowWord={playContext.playerWord[6]}></GridRow>
+            <GridRow rowWord={playContext.playerWord[6]} cellState={playContext.letterResults[6]}></GridRow>
 
         </section>
 

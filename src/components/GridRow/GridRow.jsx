@@ -3,25 +3,31 @@
     import globalStyles from '../../index.module.scss'
     import styles from './GridRow.module.scss'
 
+// Import context
+
 const GridRow = (props) => {
 
     // Get playeWord from props
 
         const playerWord = props.rowWord
 
+    // Get results color code from props
+
+        const cellState = props.cellState
+
     return(
 
         <section className={styles.row}>
-            
-            {playerWord[0] == undefined ? <p className={`${globalStyles.flexCenter} ${styles.rowLetter}`}>{playerWord[0]}</p> : <p className={`${globalStyles.flexCenter} ${styles.rowLetter} ${styles.rowLetterAnimation}`}>{playerWord[0]}</p>}
 
-            {playerWord[1] == undefined ? <p className={`${globalStyles.flexCenter} ${styles.rowLetter}`}>{playerWord[1]}</p> : <p className={`${globalStyles.flexCenter} ${styles.rowLetter} ${styles.rowLetterAnimation}`}>{playerWord[1]}</p>}
-        
-            {playerWord[2] == undefined ? <p className={`${globalStyles.flexCenter} ${styles.rowLetter}`}>{playerWord[2]}</p> : <p className={`${globalStyles.flexCenter} ${styles.rowLetter} ${styles.rowLetterAnimation}`}>{playerWord[2]}</p>}
+                <p className={`${globalStyles.flexCenter} ${styles.rowLetter}`} cell-state={cellState[0]}>{playerWord[0]}</p>
 
-            {playerWord[3] == undefined ? <p className={`${globalStyles.flexCenter} ${styles.rowLetter}`}>{playerWord[3]}</p> : <p className={`${globalStyles.flexCenter} ${styles.rowLetter} ${styles.rowLetterAnimation}`}>{playerWord[3]}</p>}
+                <p className={`${globalStyles.flexCenter} ${styles.rowLetter}`} cell-state={cellState[1]}>{playerWord[1]}</p>
 
-            {playerWord[4] == undefined ? <p className={`${globalStyles.flexCenter} ${styles.rowLetter}`}>{playerWord[4]}</p> : <p className={`${globalStyles.flexCenter} ${styles.rowLetter} ${styles.rowLetterAnimation}`}>{playerWord[4]}</p>}                        
+                <p className={`${globalStyles.flexCenter} ${styles.rowLetter}`} cell-state={cellState[2]}>{playerWord[2]}</p>
+
+                <p className={`${globalStyles.flexCenter} ${styles.rowLetter}`} cell-state={cellState[3]}>{playerWord[3]}</p>
+
+                <p className={`${globalStyles.flexCenter} ${styles.rowLetter}`} cell-state={cellState[4]}>{playerWord[4]}</p>
 
         </section>
 

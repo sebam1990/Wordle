@@ -9,7 +9,7 @@
 
 const PlayProvider = ({children}) => {
 
-    const chance = 1
+    const guess = 1
     
     // playerWord object
 
@@ -21,6 +21,19 @@ const PlayProvider = ({children}) => {
             4 : "",
             5 : "",
             6 : ""
+
+        }
+
+    // Results object
+
+        const letterResults = {
+                
+            1 : ["", "", "", "", ""],
+            2 : ["", "", "", "", ""],
+            3 : ["", "", "", "", ""],
+            4 : ["", "", "", "", ""],
+            5 : ["", "", "", "", ""],
+            6 : ["", "", "", "", ""]
 
         }
 
@@ -40,7 +53,7 @@ const PlayProvider = ({children}) => {
 
     // Context state
 
-        const [playProvider, setPlayProvider] = useState({playerWord: playerWord, chance: chance, writeWord: writeWord, compareWords: compareWords}) 
+        const [playProvider, setPlayProvider] = useState({guess: guess, playerWord: playerWord, letterResults: letterResults, writeWord: writeWord, compareWords: compareWords}) 
 
     return(
 

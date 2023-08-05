@@ -20,7 +20,7 @@ const KeyboardRow = (props) => {
 
         const [playContext, setPlayContext] = useContext(PlayContext)
 
-    // Get context language
+    // Get  language from configContext
 
         const lang = configContext.lang;
     
@@ -32,7 +32,17 @@ const KeyboardRow = (props) => {
 
     // Get props
 
-        const keys = props.keysArray;
+        const keys = props.keysArray
+
+    // Get playContext vars
+
+        const guess = playContext.guess
+
+        const playerWord = playContext.playerWord[guess]
+
+    // Get code array from context
+
+        //console.log("KR",playContext.letterResults[guess][1]);
         
     return(
 

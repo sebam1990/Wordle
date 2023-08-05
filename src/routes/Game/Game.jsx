@@ -23,9 +23,17 @@ const Game = () => {
 
         const lang = configContext.lang
 
+    // Get play data from localStorage
+
+
+
     // Get vars from play context
 
         const [playContext, setPlayContext] = useContext(PlayContext)
+
+        const copyPlayContext = {...playContext}
+
+        const guess = playContext.guess
 
     // Get day word function from database
 
@@ -47,13 +55,65 @@ const Game = () => {
 
         const compareWords = (e) => {
 
-            const dayWord = dbWord()
+            // Get day word
 
-            const playerWord = playContext.playerWord[0]
+                const dayWord = dbWord()
 
-            console.log(dayWord)
+            // Get player word
 
-            console.log(playerWord)
+                const playerWord = playContext.playerWord[guess]
+
+            // Var for letter hits
+
+                let hits = 0
+
+            // Array of results
+
+                const guessResults = ["", "", "", "", ""]
+
+            // Compare loop
+
+                for(let letter in dayWord){
+
+                    if(dayWord[letter] == playerWord[letter]){
+
+                        guessResults[letter] = "correct"
+
+                        hits++
+                        
+                    }
+                    else if(dayWord[letter] != playerWord[letter] && dayWord.includes(playerWord[letter])){
+
+                        guessResults[letter] = "present"
+                        
+                    }
+                    else{
+
+                        guessResults[letter] = "absent"
+
+                    }
+
+                }
+
+            // Save results in context
+
+                copyPlayContext.letterResults[guess] = guessResults
+
+                setPlayContext(copyPlayContext)
+
+            // Game fiinal or continue
+
+                if(hits == 5){
+
+                    console.log("Ganaste");
+
+                }
+                else{
+
+                    console.log("Proxima ronda");
+
+                }
+
         }
 
         useEffect(() => {

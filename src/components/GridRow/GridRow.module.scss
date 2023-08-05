@@ -1,13 +1,19 @@
-@import '../../index.module.scss';
-@import '../../fonts/franklin-normal-700/stylesheet.css';
+// Import external files
 
-.row{
+    @import '../../index.module.scss';
+    @import '../../fonts/franklin-normal-700/stylesheet.css';
 
-    display: inline-flex;
-    width:21.875rem;
-    margin:0.3125rem 0rem;
+// Styles for content section
 
-}
+    .row{
+
+        display: inline-flex;
+        width:21.875rem;
+        margin:0.3125rem 0rem;
+
+    }
+
+// Styles for any cell
 
     .rowLetter{
 
@@ -21,7 +27,62 @@
 
     }
 
-    @keyframes letterAnimation{
+// Styles for any cell states
+
+    .rowLetter[cell-state="idle"]{
+
+        animation-name:writeAnimation;
+        animation-duration:0.1s;
+        animation-fill-mode:forwards;
+
+    }
+
+        .rowLetter[cell-state="correct"]{
+
+            animation-name:flipAnimation;
+            animation-duration:500ms;
+            animation-timing-function:ease-in;
+            animation-fill-mode:forwards;
+
+            color:white;
+
+            background-color:$correctGreen;
+            border-color:$correctGreen;     
+
+        }
+
+        .rowLetter[cell-state="present"]{
+
+            animation-name:flipAnimation;
+            animation-duration:500ms;
+            animation-timing-function:ease-in;
+            animation-fill-mode:forwards;
+
+            color:white;
+
+            background-color:$presentYellow;
+            border-color:$presentYellow;     
+
+        }
+
+        .rowLetter[cell-state="absent"]{
+
+            animation-name:flipAnimation;
+            animation-duration:500ms;
+            animation-timing-function:ease-in;
+            animation-fill-mode:forwards;
+
+            color:white;
+
+            background-color:$absentGray;
+            border-color:$absentGray;     
+
+        }
+
+
+// Animations
+
+    @keyframes writeAnimation{
 
         0% {transform:scale(1); border-color:$gray}
 
@@ -31,10 +92,12 @@
 
     }
 
-    .rowLetterAnimation{
+    @keyframes flipAnimation{
 
-        animation-name:letterAnimation;
-        animation-duration:0.1s;
-        animation-fill-mode:forwards;
+        0% {transform:rotateX(0deg)}
+
+        50% {transform:rotateX(-90deg)}
+
+        100% {transform:rotateX(0deg)}
 
     }
