@@ -34,15 +34,25 @@ const KeyboardRow = (props) => {
 
         const keys = props.keysArray
 
-    // Get playContext vars
+        const keyState = props.keyState
 
-        const guess = playContext.guess
+    // Get error colors codes fo
 
-        const playerWord = playContext.playerWord[guess]
+        const keyColors = props.keyColors
 
-    // Get code array from context
+        const enterEvent = () => {
+            
+            playContext.compareWords()
 
-        //console.log("KR",playContext.letterResults[guess][1]);
+            setTimeout(() => {
+
+                keyColors()
+
+            },500)
+
+        }
+
+    //
         
     return(
 
@@ -54,7 +64,7 @@ const KeyboardRow = (props) => {
 
                     if(letter == "ENVIAR"){
 
-                        return <button key={index} className={`${styles.keyBtn} ${styles.enterKey}`} id={"Key"+letter} onClick={(e) => {playContext.compareWords(e)}}>{enterText}</button>
+                        return <button key={index} className={`${styles.keyBtn} ${styles.enterKey}`} id={"Key"+letter} onClick={enterEvent}>{enterText}</button>
 
                     }
                     else if(letter == "Backspace"){
@@ -69,7 +79,7 @@ const KeyboardRow = (props) => {
                     }
                     else{
 
-                        return <button key={index} className={styles.keyBtn} id={"Key"+letter} onClick={(e) => {playContext.writeWord(e)}}>{letter}</button>
+                        return <button key={index} className={styles.keyBtn} id={"Key"+letter} key-state={keyState[index]} onClick={(e) => {playContext.writeWord(e)}}>{letter}</button>
 
                     }
 

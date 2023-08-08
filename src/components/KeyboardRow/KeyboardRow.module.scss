@@ -22,6 +22,27 @@
 
     }
 
+        .keyBtn[key-state="correct"]{
+
+            color:white;
+            background-color:$correctGreen;        
+
+        }
+
+        .keyBtn[key-state="present"]{
+
+            color:white;
+            background-color:$presentYellow;        
+
+        }
+
+        .keyBtn[key-state="absent"]{
+
+            color:white;
+            background-color:$absentGray;        
+
+        }
+
     .enterKey{
 
         width:4.0881rem;

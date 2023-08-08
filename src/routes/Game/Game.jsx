@@ -53,7 +53,7 @@ const Game = () => {
 
     // Compare words function
 
-        const compareWords = (e) => {
+        const compareWords = () => {
 
             // Get day word
 
@@ -113,7 +113,7 @@ const Game = () => {
                     console.log("Proxima ronda");
 
                 }
-
+            
         }
 
         useEffect(() => {
