@@ -25,106 +25,39 @@ const Grid = () => {
 
             const guess = playContext.guess
 
-        // PlayerWord
-
-            const playerWord = playContext.playerWord[guess]
-
-        // State for letter number
-
-            const [letter, setLetter] = useState(0)
-
-        // Event vars
+        // Event default vars
 
             let key = undefined
             let keyCode = undefined
-
 
     // Player input word function
 
         const writeWord = (e) => {
 
-            e.type == "keydown" ? (key = e.key, keyCode = e.code) : (key = e.target.innerText, keyCode = e.target.id)
+            // playerWord length
 
-            if(keyCode.includes("Key") && letter < 5){
+                let pwLength = copyPlayContext.playerWord[guess].length
 
-                switch(guess){
+            // Event type
 
-                    case 1:
-                        addCase(guess)
-                    break;
-                    case 2:
-                        addCase(guess)
-                    break;
-                    case 3:
-                        addCase(guess)
-                    break;
-                    case 4:
-                        addCase(guess)
-                    break;
-                    case 5:
-                        addCase(guess)
-                    break;
-                    case 6:
-                        addCase(guess)
-                    break;
-                    default: console.log("Error")
+                e.type == "keydown" ? (key = e.key, keyCode = e.code) : (key = e.target.innerText, keyCode = e.target.id)
 
-                }
+            // Add an remove letters
 
-                setLetter(letter + 1)
+            if(keyCode.includes("Key") && pwLength < 5){
+
+                copyPlayContext.playerWord[guess] += key.toUpperCase()
+
+                copyPlayContext.letterResults[guess][pwLength] = "idle"
 
             }
-            else if(keyCode.includes("Backspace") && letter > 0){
+            else if(keyCode == "Backspace" && pwLength> 0){
 
-                switch(guess){
+                copyPlayContext.playerWord[guess] = copyPlayContext.playerWord[guess].slice(0,-1)
 
-                    case 1:
-                        removeCase(guess)
-                    break;
-                    case 2:
-                        removeCase(guess)
-                    break;
-                    case 3:
-                        removeCase(guess)
-                    break;
-                    case 4:
-                        removeCase(guess)
-                    break;
-                    case 5:
-                        removeCase(guess)
-                    break;
-                    case 6:
-                        removeCase(guess)
-                    break;
-                    default: console.log("Error")
-
-                }
-
-                setLetter(letter - 1)
+                copyPlayContext.letterResults[guess][pwLength-1] = "empty"
 
             }
-
-        }
-
-    // Function to run in any case of add switch
-
-        const addCase = (guess) => {
-
-            copyPlayContext.playerWord[guess] = copyPlayContext.playerWord[guess] + key.toUpperCase()
-
-            copyPlayContext.letterResults[guess][letter] = "idle"
-
-            setPlayContext(copyPlayContext)
-
-        }
-
-    // Function to run in any case of add switch
-
-        const removeCase = (guess) => {
-
-            copyPlayContext.playerWord[guess] = copyPlayContext.playerWord[guess].slice(0, -1)
-
-            copyPlayContext.letterResults[guess][letter-1] = "empty"
 
             setPlayContext(copyPlayContext)
 

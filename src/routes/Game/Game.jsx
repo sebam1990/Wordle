@@ -73,7 +73,7 @@ const Game = () => {
 
             // Compare loop
 
-                for(let letter in dayWord){
+                /*for(let letter in dayWord){
 
                     if(dayWord[letter] == playerWord[letter]){
 
@@ -93,7 +93,9 @@ const Game = () => {
 
                     }
 
-                }
+                }*/
+
+                console.log("game",playerWord);
 
             // Save results in context
 

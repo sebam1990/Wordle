@@ -46,7 +46,7 @@ const Keyboard = () => {
 
         const guess = playContext.guess
 
-        const playerWord = playContext.playerWord[guess].split("")
+        const playerWord = playContext.playerWord[guess]
 
         const letterResults = playContext.letterResults[guess]
 
