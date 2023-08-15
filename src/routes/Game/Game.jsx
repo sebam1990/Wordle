@@ -23,17 +23,13 @@ const Game = () => {
 
         const lang = configContext.lang
 
-    // Get play data from localStorage
-
-
-
     // Get vars from play context
 
         const [playContext, setPlayContext] = useContext(PlayContext)
 
         const copyPlayContext = {...playContext}
 
-        const guess = playContext.guess
+        let guess = copyPlayContext.guess
 
     // Get day word function from database
 
@@ -63,6 +59,7 @@ const Game = () => {
 
                 const playerWord = playContext.playerWord[guess]
 
+
             // Var for letter hits
 
                 let hits = 0
@@ -73,7 +70,7 @@ const Game = () => {
 
             // Compare loop
 
-                /*for(let letter in dayWord){
+                for(let letter in dayWord){
 
                     if(dayWord[letter] == playerWord[letter]){
 
@@ -93,30 +90,54 @@ const Game = () => {
 
                     }
 
-                }*/
-
-                console.log("game",playerWord);
+                }
 
             // Save results in context
 
                 copyPlayContext.letterResults[guess] = guessResults
 
-                setPlayContext(copyPlayContext)
-
-            // Game fiinal or continue
+            // Game final or continue
 
                 if(hits == 5){
 
-                    console.log("Ganaste");
+                    result("victory")
+
+                }
+                else if(hits !=5 && guess < 6){
+
+                    copyPlayContext.guess += 1
+
+                    hits++
 
                 }
                 else{
 
-                    console.log("Proxima ronda");
+                    result("lost", dayWord)
 
                 }
-            
+
+                setPlayContext(copyPlayContext)
+
         }
+
+    // Function for result game
+
+        const result = (result, dayWord) => {
+
+            if(result == "victory"){
+
+                console.log("Great/Genius")
+
+            }
+            else if(result == "lost"){
+
+                console.log(dayWord)
+
+            }
+
+        }
+
+    // useEffect
 
         useEffect(() => {
 

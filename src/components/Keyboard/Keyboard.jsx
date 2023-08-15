@@ -46,18 +46,15 @@ const Keyboard = () => {
 
         const guess = playContext.guess
 
-        const playerWord = playContext.playerWord[guess]
-
-        const letterResults = playContext.letterResults[guess]
+        const playerWord = playContext.playerWord[guess].split("")
 
     // Change key color function
 
     const keyColors = () => {
-        
+
         // Get results from context
 
             const letterResults = playContext.letterResults[guess]
-    
 
         // Check results and change key states
 
