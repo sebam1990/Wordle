@@ -8,8 +8,12 @@
 
 // Import styles
 
-    import GridRow from "../GridRow/GridRow"
     import styles from "./Grid.module.scss"
+    import globalStyles from '../../index.module.scss'
+
+// Import components
+
+    import GridRow from "../GridRow/GridRow"
 
 const Grid = () => {
 
@@ -79,8 +83,8 @@ const Grid = () => {
 
     return(
 
-        <section className={styles.homeGrid}>
-            
+        <section className={`${globalStyles.flexAllCenter} ${styles.homeGrid}`}>
+
             <GridRow rowWord={playContext.playerWord[1]} cellState={playContext.letterResults[1]}></GridRow>
 
             <GridRow rowWord={playContext.playerWord[2]} cellState={playContext.letterResults[2]}></GridRow>
@@ -93,7 +97,7 @@ const Grid = () => {
 
             <GridRow rowWord={playContext.playerWord[6]} cellState={playContext.letterResults[6]}></GridRow>
 
-        </section>
+        </section>       
 
     )
 

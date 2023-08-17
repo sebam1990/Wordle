@@ -10,10 +10,14 @@
 
     import Grid from '../../components/Grid/Grid.jsx';
     import Keyboard from '../../components/Keyboard/Keyboard.jsx';
+    import ResultModal from "../../components/ResultModal/ResultModal.jsx"
+
 
 // Import contexts
 
     import { ConfigContext, PlayContext } from '../../context/CreateContext';
+
+// Modal function
 
 const Game = () => {
 
@@ -30,6 +34,14 @@ const Game = () => {
         const copyPlayContext = {...playContext}
 
         let guess = copyPlayContext.guess
+
+    // Modal vars
+
+        const [showModal, setShowModal] = useState(false)
+
+        const [modalMsg , setModalMsg] = useState("")
+
+    // Game vars
 
     // Get day word function from database
 
@@ -126,12 +138,22 @@ const Game = () => {
 
             if(result == "victory"){
 
-                console.log("Great/Genius")
+                setShowModal(true)
+
+                const msgEn = ["Great","Genius","Excelent"]
+
+                const msgEs = ["Genial","Genio","Excelente"]
+
+                const msgIndex = Math.floor(Math.random() * 3)
+
+                lang == "ES" ? setModalMsg(msgEs[msgIndex]) : setModalMsg(msgEn[msgIndex])
 
             }
             else if(result == "lost"){
 
-                console.log(dayWord)
+                setShowModal(true)
+
+                setModalMsg(dayWord)
 
             }
 
@@ -151,9 +173,19 @@ const Game = () => {
 
         <main className={styles.gameMain}>
 
-            <Grid></Grid>
+            <section className={styles.modal}>
 
-            <Keyboard></Keyboard>
+                {showModal == true ? <ResultModal msg={modalMsg}></ResultModal> : undefined}
+
+            </section>
+
+            <section>
+
+                <Grid></Grid>
+
+                <Keyboard></Keyboard>
+
+            </section>
 
         </main>
 

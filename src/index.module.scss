@@ -29,7 +29,14 @@
 
 }
 
-.flexCenter{
+.flexHorizontalCenter{
+
+    display:flex;
+    justify-content:center;
+
+}
+
+.flexAllCenter{
 
     display:flex;
     justify-content:center;

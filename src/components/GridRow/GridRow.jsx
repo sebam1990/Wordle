@@ -19,15 +19,15 @@ const GridRow = (props) => {
 
         <section className={styles.row}>
 
-                <p className={`${globalStyles.flexCenter} ${styles.rowLetter}`} cell-state={cellState[0]}>{playerWord[0]}</p>
+                <p className={`${globalStyles.flexAllCenter} ${styles.rowLetter}`} cell-state={cellState[0]}>{playerWord[0]}</p>
 
-                <p className={`${globalStyles.flexCenter} ${styles.rowLetter}`} cell-state={cellState[1]}>{playerWord[1]}</p>
+                <p className={`${globalStyles.flexAllCenter} ${styles.rowLetter}`} cell-state={cellState[1]}>{playerWord[1]}</p>
 
-                <p className={`${globalStyles.flexCenter} ${styles.rowLetter}`} cell-state={cellState[2]}>{playerWord[2]}</p>
+                <p className={`${globalStyles.flexAllCenter} ${styles.rowLetter}`} cell-state={cellState[2]}>{playerWord[2]}</p>
 
-                <p className={`${globalStyles.flexCenter} ${styles.rowLetter}`} cell-state={cellState[3]}>{playerWord[3]}</p>
+                <p className={`${globalStyles.flexAllCenter} ${styles.rowLetter}`} cell-state={cellState[3]}>{playerWord[3]}</p>
 
-                <p className={`${globalStyles.flexCenter} ${styles.rowLetter}`} cell-state={cellState[4]}>{playerWord[4]}</p>
+                <p className={`${globalStyles.flexAllCenter} ${styles.rowLetter}`} cell-state={cellState[4]}>{playerWord[4]}</p>
 
         </section>
 

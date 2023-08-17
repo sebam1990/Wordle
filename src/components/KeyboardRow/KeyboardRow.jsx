@@ -56,7 +56,7 @@ const KeyboardRow = (props) => {
         
     return(
 
-        <section className={`${globalStyles.flexCenter} ${styles.keyboardRow}`}>
+        <section className={`${globalStyles.flexAllCenter} ${styles.keyboardRow}`}>
 
             {
 
