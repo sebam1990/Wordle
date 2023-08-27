@@ -1,10 +1,4 @@
-// Import dependencies
-
-    import { Link } from "react-router-dom";
-
 // Import styles
-
-    import globalStyles from "./globalStyles.module.scss"
 
     import styles from "./index.module.scss"
 
@@ -27,7 +21,7 @@ const Index = () => {
         guess: 0,
         dayWord: "",
         playerWord: [],
-        completePlay: false,
+        playState: "undefined",
         lastUpdate: window.Date.now(),
 
     }
@@ -44,31 +38,31 @@ const Index = () => {
         wins:0,
         currentStreak:0,
         maxStreak:0,
-        guessDistribution: [],
+        guessDistribution: [0,0,0,0,0,0],
 
     }
 
     const worldeUser = JSON.parse(localStorage.getItem("wordle-user"))
 
-    worldeUser == null ? localStorage.setItem("wordle-user", JSON.stringify({userID:undefined, userStats:userData})) : undefined
+    worldeUser == null ? localStorage.setItem("wordle-user", JSON.stringify({userID:"unknow", userStats:userData})) : undefined
 
-// Fake vars
+// Time and play state vars
 
-    const playState = "won"
+    const playState = worldePlay.playState
 
-    const update = 32
+    const lastUpdate = (window.Date.now() - worldePlay.lastUpdate) / 3600000
 
     return (
 
         <main className={styles.indexMain}>
 
-            {update >= 24 ? <WelcomeContent></WelcomeContent> : undefined}
+            {lastUpdate >= 24 || playState == undefined ? <WelcomeContent></WelcomeContent> : undefined}
 
-            {update < 24 && playState == "onProgress" ? <ContinueContent></ContinueContent> : undefined}
+            {lastUpdate < 24 && playState == "onProgress" ? <ContinueContent></ContinueContent> : undefined}
 
-            {update < 24 && playState == "won" ? <WonContent></WonContent> : undefined}
+            {lastUpdate < 24 && playState == "won" ? <WonContent></WonContent> : undefined}
 
-            {update < 24 && playState == "lost" ? <LostContent></LostContent> : undefined}
+            {lastUpdate < 24 && playState == "lost" ? <LostContent></LostContent> : undefined}
 
         </main>
         

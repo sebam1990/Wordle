@@ -16,6 +16,12 @@ const ContinueIndex = () => {
 
         const lang = wordleConfig.lang
 
+    // Get actual chance from wordlePlay
+
+        const wordlePlay = JSON.parse(localStorage.getItem("wordle-play"))
+
+        const chance = wordlePlay.guess
+
     // Create date
 
         const today = new Date()
@@ -50,7 +56,7 @@ const ContinueIndex = () => {
 
                     <h2 className={styles.indexSubtitle}>
                         
-                        {lang == "EN" ? "Youʼre on attempt 2 out of 6. Keep it up!" : "Estás en el intento 2 de 6. ¡Sigue así!"}
+                        {lang == "EN" ? `Youʼre on attempt ${chance} out of 6. Keep it up!` : `Estás en el intento ${chance} de 6. ¡Sigue así!`}
                         
                     </h2>
 

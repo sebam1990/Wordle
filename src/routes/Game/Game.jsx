@@ -42,6 +42,8 @@ const Game = () => {
 
         const worldeUser = JSON.parse(localStorage.getItem("wordle-user"))
 
+        const userStats = worldeUser.userStats;
+
     // Modal vars
 
         const [showModal, setShowModal] = useState(false)
@@ -128,7 +130,7 @@ const Game = () => {
 
                         hits++
 
-                    // Save data in localStorage if play continue
+                    // Save data in localStorage
 
                         const encryptPass = "wordle2023"
 
@@ -137,7 +139,7 @@ const Game = () => {
                             guess: copyPlayContext.guess,
                             dayWord: CryptoJS.AES.encrypt(dayWord, encryptPass).toString(),
                             playerWord: copyPlayContext.playerWord,
-                            completePlay: false,
+                            playState: "onProgress",
                             lastUpdate: window.Date.now(),
                     
                         }
@@ -171,12 +173,72 @@ const Game = () => {
 
                 lang == "ES" ? setModalMsg(msgEs[msgIndex]) : setModalMsg(msgEn[msgIndex])
 
+                // Save play data in localStorage
+
+                    const playData = {
+
+                        guess: "",
+                        dayWord: "",
+                        playerWord: "",
+                        playState: "won",
+                        lastUpdate: window.Date.now(),
+                
+                    }
+
+                    localStorage.setItem("wordle-play", JSON.stringify(playData))
+
+                // Save user stats in localStorage
+
+                    const guessDistribution = userStats.guessDistribution
+
+                    guessDistribution[guess-1] = guessDistribution[guess-1] + 1
+
+                    const userData = {
+
+                        games: userStats.games + 1,
+                        wins: userStats.wins + 1,
+                        currentStreak: userStats.currentStreak + 1,
+                        maxStreak: userStats.maxStreak + 1,
+                        guessDistribution: guessDistribution
+
+                    }
+
+                    localStorage.setItem("wordle-user", JSON.stringify({userID:worldeUser.userID, userStats:userData}))
+
             }
             else if(result == "lost"){
 
                 setShowModal(true)
 
                 setModalMsg(dayWord)
+
+                // Save data in localStorage
+
+                    const playData = {
+
+                        guess: "",
+                        dayWord: "",
+                        playerWord: "",
+                        playState: "lost",
+                        lastUpdate: window.Date.now(),
+                
+                    }
+
+                    localStorage.setItem("wordle-play", JSON.stringify(playData))
+
+                // Save user stats in localStorage
+
+                    const userData = {
+
+                        games: userStats.games + 1,
+                        wins: userStats.wins,
+                        currentStreak: userStats.currentStreak,
+                        maxStreak: userStats.maxStreak,
+                        guessDistribution: userStats.guessDistribution
+
+                    }
+
+                    localStorage.setItem("wordle-user", JSON.stringify({userID:worldeUser.userID, userStats:userData}))
 
             }
 
