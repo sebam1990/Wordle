@@ -1,0 +1,60 @@
+// Global styles
+
+    *{
+
+        margin:0rem;
+        padding:0rem;
+        font-size:16px;
+
+    }
+
+// Vars
+
+    $gray: #d3d6da;
+    $darkGray: #878a8c;
+    $correctGreen: #6aaa64;
+    $presentYellow: #c9b458;
+    $absentGray:#787c7e;
+    $indexBackground:#e3e3e1;
+
+// Fonts
+
+    /*@include font-face {
+        font-family: ('karnakpro-black', './fonts/karnakpro-black.ttf')
+    }*/
+
+// Flex variations
+
+    .flex{
+
+    display:flex;
+
+    }
+
+    .flexHorizontalCenter{
+
+    display:flex;
+    justify-content:center;
+
+    }
+
+    .flexVerticalCenter{
+
+        display:flex;
+        align-items:center;
+
+    }
+
+    .flexAllCenter{
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    }
+
+    .flex_30{
+
+    width:30%;
+
+    }

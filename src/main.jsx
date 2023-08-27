@@ -8,6 +8,8 @@
 
     import "./index.module.scss"
 
+    import "./globalStyles.module.scss"
+
 // Import contexts
 
     import ConfigProvider from "./context/ConfigProvider.jsx"

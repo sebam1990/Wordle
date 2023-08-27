@@ -6,7 +6,6 @@
 
     import {ConfigContext} from "./CreateContext.jsx"
 
-
 const ConfigProvider = ({ children }) => {
 
     // Set default language

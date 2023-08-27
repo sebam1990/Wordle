@@ -1,6 +1,7 @@
 // Import dependencies
 
     import {useContext, useEffect, useState} from 'react';
+    import CryptoJS from 'crypto-js';
 
 // Import styles
 
@@ -35,13 +36,17 @@ const Game = () => {
 
         let guess = copyPlayContext.guess
 
+    // Get vars from localStorage
+
+        const worldePlay = JSON.parse(localStorage.getItem("wordle-play"))
+
+        const worldeUser = JSON.parse(localStorage.getItem("wordle-user"))
+
     // Modal vars
 
         const [showModal, setShowModal] = useState(false)
 
         const [modalMsg , setModalMsg] = useState("")
-
-    // Game vars
 
     // Get day word function from database
 
@@ -117,9 +122,27 @@ const Game = () => {
                 }
                 else if(hits !=5 && guess < 6){
 
-                    copyPlayContext.guess += 1
+                    // Amount current guess and hit
 
-                    hits++
+                        copyPlayContext.guess += 1
+
+                        hits++
+
+                    // Save data in localStorage if play continue
+
+                        const encryptPass = "wordle2023"
+
+                        const playData = {
+
+                            guess: copyPlayContext.guess,
+                            dayWord: CryptoJS.AES.encrypt(dayWord, encryptPass).toString(),
+                            playerWord: copyPlayContext.playerWord,
+                            completePlay: false,
+                            lastUpdate: window.Date.now(),
+                    
+                        }
+
+                        localStorage.setItem("wordle-play", JSON.stringify(playData))
 
                 }
                 else{
