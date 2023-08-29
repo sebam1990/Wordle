@@ -14,6 +14,10 @@
     import {IoStatsChartOutline} from "react-icons/io5"
     import {BsFillGearFill} from "react-icons/bs"
 
+// Import components
+
+    import Modal from "../MenuModal/MenuModal.jsx"
+
 const Header = () => {
 
     // useContext for language change
@@ -30,7 +34,11 @@ const Header = () => {
 
     return(
 
-            url == "/" ? undefined :
+        <>
+
+            <Modal></Modal>
+
+            {url == "/" ? undefined :
 
                 <header className={`${globalStyles.flex} ${styles.header}`}>
 
@@ -58,7 +66,9 @@ const Header = () => {
 
                     </nav>
 
-                </header>
+            </header>}
+
+        </>
 
     )
 

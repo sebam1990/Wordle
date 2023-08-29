@@ -9,7 +9,17 @@
 
         display: inline-flex;
         width:21.875rem;
+        height:4.125rem;
         margin:0.3125rem 0rem;
+
+    }
+
+    .row[mode="modal"]{
+
+        display: inline-flex;
+        width:11.1875rem;
+        height:2.3125rem;
+        margin:0rem;
 
     }
 
@@ -17,13 +27,25 @@
 
     .rowLetter{
 
-        width:3.875rem;
-        height:3.875rem;
+        width:17.71%;
+        height:93.93%;
         margin:0rem 0.3125rem;
         border:solid 2px;
         border-color:$gray;
         font-family:"nytfranklinbold";
         font-size:2rem;
+
+    }
+
+    .rowLetter[mode="modal"]{
+
+        width:17.71%;
+        height:93.93%;
+        margin:0rem 0.25rem 0rem 0rem;
+        border:solid 2px;
+        border-color:$gray;
+        font-family:"nytfranklinbold";
+        font-size:1.6rem;
 
     }
 

@@ -35,6 +35,10 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 
                     <Route path="/play" element={<Game />}></Route>
 
+                    <Route path="/login"></Route>
+
+                    <Route path="/reminder"></Route>
+
                     <Route path="/error" element={<Error />}></Route>
 
                 </Routes>
