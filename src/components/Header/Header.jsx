@@ -1,7 +1,7 @@
 // Import dependencies
 
-    import { useContext } from 'react'
-    import { ConfigContext } from '../../context/CreateContext.jsx'
+    import { useContext, useState, useEffect } from 'react'
+    import {Link} from "react-router-dom"
 
 // Import styles
 
@@ -14,29 +14,70 @@
     import {IoStatsChartOutline} from "react-icons/io5"
     import {BsFillGearFill} from "react-icons/bs"
 
+// Import context
+
+    import {ConfigContext} from "../../context/CreateContext.jsx"
+
 // Import components
 
     import Modal from "../MenuModal/MenuModal.jsx"
 
 const Header = () => {
 
-    // useContext for language change
+    // useContext
 
-        const context = useContext(ConfigContext)
+        const configContext = useContext(ConfigContext)
 
-        const changeLang = context.changeLang;
+    // Context vars
 
-        const lang = context.lang
+        const lang = configContext.lang
+
+    // Change language
+
+        const changeLang = () => {
+
+            lang == "ES" ? configContext.setLang("EN") : configContext.setLang("ES")
+
+        }
     
-    // Get url for show or hidden header
+    // URL vars
 
         const url = window.location.pathname
+
+        const urlFull = window.location.search
+
+    // Open and close modal with buttons
+
+        const [showModal, setShowModal] = useState(false)
+
+        const [modalType, setModalType] = useState("")
+
+        const modalToggle = (modalType) => {
+
+            showModal == false ? setShowModal(true) : setShowModal(false)
+
+            setModalType(modalType)
+
+        }
+
+    // useEffect
+
+        useEffect(() => {
+
+            const urlFilter = urlFull.slice(2)
+
+            urlFull != "" && urlFilter != "continue" ? setModalType(urlFilter) : undefined
+
+            urlFull != "" ? modalToggle(urlFilter) : undefined
+
+        },[])
+        
 
     return(
 
         <>
 
-            <Modal></Modal>
+            {showModal == true ? <Modal modalToggle={modalToggle} type={modalType}/> : undefined}
 
             {url == "/" ? undefined :
 
@@ -56,13 +97,17 @@ const Header = () => {
 
                     <nav className={`${globalStyles.flex} ${globalStyles.flex_30} ${styles.headerNav}`}>
 
-                        <button className={styles.headerBtn}> <MdHelpOutline size={28} />  </button>
+                        <button className={styles.headerBtn} onClick={() => modalToggle("instructions")}> <MdHelpOutline size={28} />  </button>
 
-                        <button className={styles.headerBtn}> <IoStatsChartOutline size={28}/>  </button>
+                        <button className={styles.headerBtn} onClick={() => modalToggle("stats")}> <IoStatsChartOutline size={28}/>  </button>
 
-                        <button className={styles.headerBtn}> <BsFillGearFill size={28}/> </button>
+                        <button className={styles.headerBtn} onClick={() => modalToggle("settings")}> <BsFillGearFill size={28}/> </button>
 
-                        <button className={styles.loginBtn}>{lang == "ES" ? "Iniciar Sesión" : "Login"}</button>
+                        <Link className={styles.loginBtn} to="/login" target="_blank">
+
+                            <p className={styles.btnText}>{lang == "ES" ? "Iniciar Sesión" : "Login"}</p>
+
+                        </Link>
 
                     </nav>
 

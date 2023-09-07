@@ -1,0 +1,99 @@
+// Import styles
+
+    @import "../../../fonts/karnakpro-condensedblack/stylesheet.css";
+
+    @import "../../../fonts/karnakpro-light/stylesheet.css";
+
+    @import "../../../fonts/franklin-normal-300/stylesheet.css";
+
+    @import "../../../fonts/franklin-normal-700/stylesheet.css";
+
+// Instructions titles
+
+    .instructionsTitle{
+
+        margin-top:29px;
+        font-family:"karnakpro-condensuploadedfile";
+        font-size:1.76rem;
+
+    }
+
+    .instructionsSubtitle{
+
+        font-family:"karnakpro-lightuploaded_file";
+        font-size:1.25rem;
+
+    }
+
+// instructionsList
+
+    .instructionsList{
+
+        margin-top:1rem;
+        padding-left:20px;
+        font-family:"nytfranklinlight";
+        font-size:1rem;
+
+    }
+
+// examplesSection
+
+    .examplesTitle{
+
+        font-family:"nytfranklinbold";
+        font-size:1rem;
+        margin-top:1rem;
+
+    }
+
+    .examplesArticle{
+
+        margin:8px 0rem 20px 0rem;
+
+    }
+
+    .examplesText{
+
+        font-family:"nytfranklinlight";
+        font-size:1rem;
+        margin-top:8px;
+
+    }
+
+// loginSection
+
+    .loginSection{
+
+        padding:17px 0rem;
+        border-top: 1px solid #cccccc;
+        border-bottom: 1px solid #cccccc;
+
+    }
+
+    .loginImg{
+
+        margin-right:10px
+
+    }
+
+    .loginText{
+
+        font-family:"nytfranklinlight";
+        font-size:1rem;
+
+    }
+
+    .loginLink{
+
+        color:#477aaa;
+        text-decoration:none;
+
+    }
+
+// reminderSection
+
+    .reminderSection{
+
+        margin-top:20px;
+
+    }

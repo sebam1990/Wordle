@@ -1,0 +1,178 @@
+// Import styles
+
+    @import "../../../fonts/karnakpro-condensedblack/stylesheet.css";
+
+    @import "../../../fonts/karnakpro-light/stylesheet.css";
+
+    @import "../../../fonts/franklin-normal-300/stylesheet.css";
+
+    @import "../../../fonts/franklin-normal-700/stylesheet.css";
+
+    @import "../../../globalStyles.module.scss";
+
+
+// statsTitle
+
+    .statsTitle{
+
+        width:250px;
+        margin:0rem auto;
+        padding-top:50px;
+        font-family:"nytfranklinbold";
+        font-size:0.875rem;
+
+    }
+
+// statsMarkers
+
+    .statsMarkers{
+
+        width:320px;
+        height:3.875rem;
+        margin:0.625rem auto 0rem auto;
+        font-family:"nytfranklinlight";
+        text-align:center;
+
+    }
+
+// statsArticles
+
+    .statsArticle{
+
+        width:25%;
+        height:3rem;
+        margin-left:12px;
+
+    }
+
+    .markerNumber{
+
+        font-size:2.75rem;
+
+    }
+
+    .markerText{
+
+        font-size:0.625rem;
+        letter-spacing:0.1rem;
+
+    }
+
+// distributionSection
+
+    .distributionSection{
+    
+        width:281.88px;
+        margin:20px auto 0px auto;
+
+    }
+
+    .distributionTitle{
+
+        width:250px;
+        margin:0rem auto;
+        font-family:"nytfranklinbold";
+        font-size:0.875rem;
+
+    }
+
+    .graphLine{
+
+        margin-top:0.25rem
+
+    }
+
+    .graphLine:first-of-type{
+
+        margin-top:0.625rem
+
+    }
+
+    .graphIndex{
+
+        font-family:"nytfranklinbold";
+        font-size:0.75rem;
+
+    }
+
+    .graphBar{
+
+        width:17.125rem;
+
+    }
+
+    .graphCounter{
+
+        width:1.1875rem;
+        height:1.1875rem;
+        margin-left:0.25rem;
+        padding-top:0.21875rem;
+        font-family:"nytfranklinbold";
+        font-size:0.75rem;
+        color:white;
+        text-align:center;
+        background-color:$absentGray;
+
+    }
+
+    .graphCounter[extended="true"]{
+
+        padding-right:0.25rem;
+        text-align:right;
+        background-color:$correctGreen;
+
+    }
+
+// loginSection
+
+    .loginSection{
+
+        width:343px;
+        margin:2rem auto 0rem auto;
+        padding:1.0625rem 0rem;
+        border-top: 1px solid #cccccc;
+        border-bottom: 1px solid #cccccc;
+
+    }
+
+    .loginImg{
+
+        margin-right:0.625rem
+
+    }
+
+    .loginLink{
+
+        font-family:"nytfranklinlight";
+        font-size:0.75rem;
+        color:black;
+
+    }
+
+// shareSection
+
+    .shareSection{
+
+        width:142px;
+        margin:1rem auto 0rem auto;
+
+    }
+
+    .shareBtn{
+
+        width:8.875rem;
+        height:2.25rem;
+        font-family:"nytfranklinbold";
+        font-size:1rem;
+        color:white;
+        background-color:$correctGreen;
+        border:none;
+        border-radius:6.5rem;
+
+    }
+
+        .shareBtnText{
+
+            margin-right:0.625rem;
+
+        }

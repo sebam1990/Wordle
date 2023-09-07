@@ -8,35 +8,44 @@
 
 const ConfigProvider = ({ children }) => {
 
-    // Set default language
+    // Default language
 
         const systemLang = window.navigator.languages[1]
 
-        const localData = localStorage.getItem("wordle-config");
+    // Set initial values
 
-        localData == null ? localStorage.setItem("wordle-config", JSON.stringify({lang: systemLang.toUpperCase()})) : undefined
+        const initialValues = {
 
-        const localLang = JSON.parse(localData).lang;
-
-        const [lang, setLang] = useState(localData == null ? systemLang.toUpperCase() : localLang);
-
-    // Change language function
-
-        const changeLang = () => {
-
-            // Update localstorage
-
-                lang == "ES" ? localStorage.setItem("wordle-config", JSON.stringify({lang: "EN"})) : localStorage.setItem("wordle-config", JSON.stringify({lang: "ES"}))
-
-            // Update context
-
-                lang == "ES" ? setLang("EN") : setLang("ES")
+            lang: systemLang.toUpperCase(),
+            theme: "light",
+            hardMode: "false",
+            highContrast: "false",
 
         }
 
+    // Set default wordleConfig values
+
+        const wordleConfig = JSON.parse(localStorage.getItem("wordle-config"))
+
+        wordleConfig == null ? localStorage.setItem("wordle-config", JSON.stringify(initialValues)) : undefined
+
+    // Context vars
+
+        let defaultValues
+        
+        defaultValues = wordleConfig == null ? initialValues : wordleConfig
+
+        const [lang, setLang] = useState(defaultValues.lang)
+
+        const [hardMode, setHardMode] = useState(defaultValues.hardMode)
+
+        const [theme, setTheme] = useState(defaultValues.theme)
+
+        const [highContrast, setHighContrast] = useState(defaultValues.highContrast)
+
     return(
 
-        <ConfigContext.Provider value={{lang: lang, changeLang}}>
+        <ConfigContext.Provider value={{lang, hardMode, theme, highContrast, setLang, setHardMode, setTheme, setHighContrast}}>
 
             {children}
             

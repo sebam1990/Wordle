@@ -13,8 +13,8 @@
     import LostContent from "./components/IndexContent/LostIndex.jsx"
 
 const Index = () => {
-
-    // Set item "wordle-play" in localStorage if not exists
+    
+// Set item "wordle-play" in localStorage if not exists
 
     const playData = {
 
@@ -34,7 +34,7 @@ const Index = () => {
 
     const userData = {
 
-        games:0,
+        games:1,
         wins:0,
         currentStreak:0,
         maxStreak:0,

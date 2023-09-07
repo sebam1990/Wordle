@@ -1,0 +1,67 @@
+// Import styles
+
+    @import "../../../fonts/karnakpro-condensedblack/stylesheet.css";
+
+    @import "../../../fonts/karnakpro-light/stylesheet.css";
+
+    @import "../../../fonts/franklin-normal-300/stylesheet.css";
+
+    @import "../../../fonts/franklin-normal-700/stylesheet.css";
+
+    @import "../../../globalStyles.module.scss";
+
+// title
+
+    .title{
+
+        margin-bottom:1rem;
+        font-family:"nytfranklinbold";
+        font-size:1rem;
+        text-align:center;
+
+    }
+
+// settingSection
+
+    .settingSection{
+
+        justify-content:space-between;
+        width:100%;
+        padding:1rem 0rem;
+        border-bottom:solid 1px $gray;
+
+        font-family: 'nytfranklinlight';
+
+    }
+
+    .settingTitle{
+
+        font-size:1.125rem;
+
+    }
+
+    .settingSubtitle{
+
+        font-size:0.75rem;
+        color:$absentGray;
+
+    }
+
+    .settingEmail{
+
+        font-size:1.125rem;
+        color:$absentGray;
+        text-decoration:none;
+
+    }
+
+// footer
+
+    .footer{
+
+        justify-content:space-between;
+        margin-top:1rem;
+        font-family: 'nytfranklinlight';
+
+    }
+

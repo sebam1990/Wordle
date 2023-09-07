@@ -1,0 +1,95 @@
+@import '../../globalStyles.module.scss';
+
+// switchTrack
+
+    .switchTrack{
+
+        width:32px;
+        height:20px;
+        border-radius:999px;
+        background-color:$absentGray;
+        border:none;
+
+    }
+
+        .switchTrack[state="true"]{
+
+            animation-name:turnOn;
+            animation-duration:0.3s;
+            animation-fill-mode:forwards;
+
+        }
+
+        .switchTrack[state="false"]{
+
+            animation-name:turnOff;
+            animation-duration:0.3s;
+            animation-fill-mode:forwards;
+
+        }
+
+// switchHandler
+
+    .switchHandler{
+
+        width:16px;
+        height:16px;
+        margin:2px;
+        border-radius:8px;
+        background-color:white;
+
+    }
+
+        .switchHandler[state="true"]{
+
+            animation-name:turnOnMove;
+            animation-duration:0.3s;
+            animation-fill-mode:forwards;
+
+        }
+
+        .switchHandler[state="false"]{
+
+            animation-name:turnOffMove;
+            animation-duration:0.3s;
+            animation-fill-mode:forwards;
+
+        }
+
+// Animations
+
+    // Change background color
+
+        @keyframes turnOn{
+
+            0% {margin-left:2px; background-color:$absentGray}
+
+            100% {margin-left:20px; background-color:$correctGreen}
+
+        }
+
+        @keyframes turnOff{
+
+            0% {margin-left:2px; background-color:$correctGreen}
+
+            100% {margin-left:20px; background-color:$absentGray}
+
+        }
+
+    // Move handler
+
+        @keyframes turnOnMove{
+
+            0% {transform:translateX(0px)}
+
+            100% {transform:translateX(12px)}
+
+        }
+
+        @keyframes turnOffMove{
+
+            0% {transform:translateX(20px)}
+
+            100% {transform:translateX(0px)}
+
+        }

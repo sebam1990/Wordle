@@ -4,13 +4,15 @@
 
 // Import styles
 
-    import styles from "./MenuModal.module.scss"
+    //import styles from "./MenuModal.module.scss"
 
-    import globalStyles from "../../globalStyles.module.scss"
+    import styles from "./InstructionsModal.module.scss"
+
+    import globalStyles from "../../../globalStyles.module.scss"
 
 // Import components
 
-    import GridRow from "../GridRow/GridRow.jsx"
+    import GridRow from "../../GridRow/GridRow.jsx"
 
 const InstructionsModal = () => {
 
@@ -45,8 +47,6 @@ const InstructionsModal = () => {
                 <p className={styles.examplesTitle}> {lang == "EN" ? "Examples" : "Ejemplos"} </p>
 
                 <article className={styles.examplesArticle}>
-
-                    {/*<img src="/weary.jpg"></img>*/}
 
                     <GridRow rowWord="ACTOR" cellState={["correct","idle","idle","idle","idle"]} mode="modal"></GridRow>
 

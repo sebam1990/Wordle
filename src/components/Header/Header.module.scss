@@ -87,14 +87,29 @@
 
     .loginBtn{
 
-        width:9.2375rem;
-        height:2.5rem;
-        padding:0rem 1.56rem;
-        margin:0rem 1.875rem 0rem 1.25rem;
+        width:120px;
+        height:42px;
+        padding:0rem 25px;
+        margin:0rem 1.25rem 0rem 1.25rem;
         background:none;
-        border-radius:1.25rem;
+        border:solid 1px black;
+        border-radius:1.5rem;
         cursor:pointer;
         font-family:'nytfranklinsemibold';
         font-weight:bold;
+        text-align:center;
+        color:black;
 
     }
+
+        .loginBtn:link{
+
+            text-decoration:none;
+
+        }
+
+        .btnText{
+
+            margin-top:0.8rem;
+
+        }
