@@ -116,15 +116,15 @@ const StatsModal = () => {
 
                 <section className={`${styles.loginSection} ${globalStyles.flexVerticalCenter}`}>
 
-                <img className={styles.loginImg} src="/modalLogin.jpg"></img>
+                    <img className={styles.loginImg} src="/modalLogin.jpg"></img>
 
-                <p>
+                    <p>
 
-                    <Link to="/login" target="_blank" className={styles.loginLink}> {lang == "EN" ? "Log in or create a free account to link your stats." : "Accede o crea una cuenta gratis para vincular tus estadísticas."} </Link>
+                        <Link to="/login" target="_blank" className={styles.loginLink}> {lang == "EN" ? "Log in or create a free account to link your stats." : "Accede o crea una cuenta gratis para vincular tus estadísticas."} </Link>
 
-                </p>
+                    </p>
 
-            </section>
+                </section>
 
             <section className={styles.shareSection}>
 
