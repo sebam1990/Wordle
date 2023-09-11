@@ -18,11 +18,25 @@
 
     import Switch from "../../Swtich/Switch.jsx"
 
+// Import translates
+
+    import languages from "../../../utils/languages.js"    
+
 const SettingsModal = () => {
 
     // useContext
 
         const configContext = useContext(ConfigContext)
+
+    // Import lang from context
+
+        const {lang} = configContext
+
+    // Import translates
+
+        const globalTranslate = languages[lang]
+
+        const {settingsModal} = globalTranslate
 
     // Get worldleConfig
 
@@ -78,7 +92,7 @@ const SettingsModal = () => {
 
             <header>
 
-                <h1 className={styles.title}>SETTINGS</h1>
+                <h1 className={styles.title}>{settingsModal.settingsTitle}</h1>
 
             </header>
         
@@ -86,9 +100,9 @@ const SettingsModal = () => {
 
                 <section>
 
-                    <p className={styles.settingTitle}>Hard Mode</p>
+                    <p className={styles.settingTitle}>{settingsModal.hardModeTitle}</p>
 
-                    <p className={styles.settingSubtitle}>Any revealed hints must be used in subsequent guesses</p>
+                    <p className={styles.settingSubtitle}>{settingsModal.hardModeSubtitle}</p>
 
                 </section>
 
@@ -98,7 +112,7 @@ const SettingsModal = () => {
 
             <section className={`${styles.settingSection} ${globalStyles.flexAllCenter}`}>
 
-                <p className={styles.settingTitle}>Dark Theme</p>
+                <p className={styles.settingTitle}>{settingsModal.themeTitle}</p>
 
                 {theme == "dark" ? <Switch changeEvent={changeTheme} checked={"true"}></Switch> : <Switch changeEvent={changeTheme} checked={"false"}></Switch>}
 
@@ -108,9 +122,9 @@ const SettingsModal = () => {
 
                 <section>
 
-                    <p className={styles.settingTitle}>High Contrast Mode</p>
+                    <p className={styles.settingTitle}>{settingsModal.highContrastTitle}</p>
 
-                    <p className={styles.settingSubtitle}>For improved color vision</p>
+                    <p className={styles.settingSubtitle}>{settingsModal.highContrastSubtitle}</p>
 
                 </section>
 
@@ -120,7 +134,7 @@ const SettingsModal = () => {
 
             <section className={`${styles.settingSection} ${globalStyles.flexAllCenter}`}>
 
-                <p className={styles.settingTitle}>Feedback</p>
+                <p className={styles.settingTitle}>{settingsModal.feedbackTitle}</p>
 
                 <a href="mailto:marinio.sebastian@gmail.com" className={styles.settingEmail}>Email</a>
 
@@ -129,7 +143,7 @@ const SettingsModal = () => {
 
             <section className={`${styles.settingSection} ${globalStyles.flexAllCenter}`}>
 
-                <p className={styles.settingTitle}>Report a Bug</p>
+                <p className={styles.settingTitle}>{settingsModal.bugTitle}</p>
 
                 <a href="mailto:marinio.sebastian@gmail.com" className={styles.settingEmail}>Email</a>
 
@@ -137,7 +151,7 @@ const SettingsModal = () => {
 
             <section className={`${styles.settingSection} ${globalStyles.flexAllCenter}`}>
 
-                <p className={styles.settingTitle}>Questions?</p>
+                <p className={styles.settingTitle}>{settingsModal.faqsTitle}</p>
 
                 <Link to="/faq" className={styles.settingEmail}>FAQ</Link>
 

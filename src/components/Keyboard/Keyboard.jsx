@@ -12,7 +12,11 @@
 
 // Import playContext
 
-    import {PlayContext} from '../../context/CreateContext'
+    import {ConfigContext, PlayContext} from '../../context/CreateContext'
+
+// Import translates
+
+    import languages from "../../utils/languages.js"
 
 const Keyboard = () => {
 
@@ -37,6 +41,8 @@ const Keyboard = () => {
         ])
 
     // useContext
+
+        const configContext = useContext(ConfigContext)
 
         const [playContext, setPlayContext] = useContext(PlayContext)
 
@@ -78,15 +84,25 @@ const Keyboard = () => {
 
     }
 
+    // Import lang from configContext
+
+        const {lang} = configContext
+
+    // Import translates
+
+        const globalTranslate = languages[lang]
+
+        const {keyboard} = globalTranslate
+
     return(
 
         <section className={styles.homeKeyboard}>
 
-            <KeyboardRow keysArray={letterRows[0]} keyState={keyState[0]}></KeyboardRow>
+            <KeyboardRow keysArray={keyboard.letterRows[0]} keyState={keyState[0]}></KeyboardRow>
 
-            <KeyboardRow keysArray={letterRows[1]} keyState={keyState[1]}></KeyboardRow>
+            <KeyboardRow keysArray={keyboard.letterRows[1]} keyState={keyState[1]}></KeyboardRow>
 
-            <KeyboardRow keysArray={letterRows[2]} keyState={keyState[2]} keyColors={keyColors}></KeyboardRow>
+            <KeyboardRow keysArray={keyboard.letterRows[2]} keyState={keyState[2]} keyColors={keyColors}></KeyboardRow>
 
         </section>
 

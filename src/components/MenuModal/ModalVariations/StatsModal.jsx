@@ -1,6 +1,8 @@
 // Import dependencies
 
-import {Link} from "react-router-dom"
+    import {useContext} from "react"
+
+    import {Link} from "react-router-dom"
 
 // Import styles
 
@@ -8,17 +10,19 @@ import {Link} from "react-router-dom"
 
     import globalStyles from "../../../globalStyles.module.scss"
 
-    //  Import icons
+//  Import icons
 
     import {MdOutlineShare} from "react-icons/md"
 
-// Get language from wordle-config
+// Import context
 
-    const wordleConfig = JSON.parse(localStorage.getItem("wordle-config"))
+    import {ConfigContext} from "../../../context/CreateContext.jsx"
 
-    let lang
-    
-    wordleConfig != null ? wordleConfig.lang : undefined
+// Import translates
+
+    import languages from "../../../utils/languages.js"
+
+
 
 // Get stats from wordle-user
 
@@ -38,11 +42,25 @@ import {Link} from "react-router-dom"
 
 const StatsModal = () => {
 
+    // useContext
+
+        const configContext = useContext(ConfigContext)
+
+    // Import lang from context
+
+        const {lang} = configContext
+    
+    // Import translates
+    
+        const globalTranslate = languages[lang]
+
+        const {statsModal} = globalTranslate
+
     return(
 
         <>
 
-            <h2 className={styles.statsTitle}>{lang == "EN" ? "STATISTICS" : "ESTADÍSTICAS"}</h2>
+            <h2 className={styles.statsTitle}>{statsModal.statsTitle}</h2>
 
             <section className={`${styles.statsMarkers} ${globalStyles.flex}`}>
 
@@ -50,7 +68,7 @@ const StatsModal = () => {
 
                     <p className={styles.markerNumber}>{userStats.games}</p>
 
-                    <p className={styles.markerText}> {lang == "EN" ? "Played" : "Jugados"} </p>
+                    <p className={styles.markerText}> {statsModal.markerText[0]} </p>
 
                 </article>
 
@@ -58,7 +76,7 @@ const StatsModal = () => {
 
                     <p className={styles.markerNumber}>{winPercentage}</p>
 
-                    <p className={styles.markerText}> {lang == "EN" ? "Win%" : "%Victorias"} </p>
+                    <p className={styles.markerText}> {statsModal.markerText[1]} </p>
 
                 </article>
 
@@ -66,7 +84,7 @@ const StatsModal = () => {
 
                     <p className={styles.markerNumber}>{userStats.currentStreak}</p>
 
-                    <p className={styles.markerText}> {lang == "EN" ? "Current Streak" : "Racha actual"} </p>
+                    <p className={styles.markerText}> {statsModal.markerText[2]} </p>
 
                 </article>
 
@@ -74,7 +92,7 @@ const StatsModal = () => {
 
                     <p className={styles.markerNumber}>{userStats.maxStreak}</p>
 
-                    <p className={styles.markerText}> {lang == "EN" ? "Max Streak" : "Mejor Racha"} </p>
+                    <p className={styles.markerText}> {statsModal.markerText[3]} </p>
 
                 </article>
 
@@ -82,7 +100,7 @@ const StatsModal = () => {
 
             <section className={styles.distributionSection}>
 
-                <h2 className={styles.distributionTitle}>{lang == "EN" ? "GUESS DISTRIBUTION" : "INTENTOS"}</h2>
+                <h2 className={styles.distributionTitle}>{statsModal.distributionTitle}</h2>
 
                 {
 
@@ -120,7 +138,7 @@ const StatsModal = () => {
 
                     <p>
 
-                        <Link to="/login" target="_blank" className={styles.loginLink}> {lang == "EN" ? "Log in or create a free account to link your stats." : "Accede o crea una cuenta gratis para vincular tus estadísticas."} </Link>
+                        <Link to="/login" target="_blank" className={styles.loginLink}> {statsModal.loginLink} </Link>
 
                     </p>
 
@@ -130,7 +148,7 @@ const StatsModal = () => {
 
                 <button className={`${styles.shareBtn} ${globalStyles.flexAllCenter}`}>
                     
-                    <span className={styles.shareBtnText}> {lang == "EN" ? "Share" : "Compartir"} </span> <MdOutlineShare size={20} color={"#fff"}/>
+                    <span className={styles.shareBtnText}> {statsModal.shareBtnText} </span> <MdOutlineShare size={20} color={"#fff"}/>
                     
                 </button>
 

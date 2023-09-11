@@ -1,5 +1,7 @@
 // Import dependencies
 
+    import {useContext} from "react"
+
     import {Link} from "react-router-dom"
 
 // Import styles
@@ -8,27 +10,37 @@
 
     import globalStyles from "../../globalStyles.module.scss"
 
+// Import context
+
+    import {ConfigContext} from "../../context/CreateContext.jsx"
+
+// Import translates
+
+    import languages from "../../utils/languages.js"
+
+// Import date
+
+    import {dates} from "../../utils/dates.js"
+
 const WonIndex = () => {
 
-    // Get language from wordleConfig
+    // useContext
 
-        const wordleConfig = JSON.parse(localStorage.getItem("wordle-config"))
+    const configContext = useContext(ConfigContext)
 
-        const lang = wordleConfig.lang
+    // Import lang from context
 
-    // Create date
+        const {lang} = configContext
 
-        const today = new Date()
+    // Import translates
 
-        const monthES = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"]
+        const globalTranslate = languages[lang]
 
-        const monthEN = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+        const {wonIndex} = globalTranslate
 
-        const indexMonth = today.getMonth();
+    // Get date
 
-        const dateEN = `${monthEN[indexMonth]} ${today.getDate()}, ${today.getFullYear()}`
-
-        const dateES = `${today.getDate()} de ${monthES[indexMonth]}, ${today.getFullYear()}`
+        const date = dates[lang]
 
     return(
 
@@ -46,13 +58,9 @@ const WonIndex = () => {
 
                 <section className={styles.titleSection}>
 
-                    <h1 className={styles.indexTitle}>{lang == "EN" ? "Hi Wordler" : "Hola Wordler"}</h1>
+                    <h1 className={styles.indexTitle}>{wonIndex.indexTitle}</h1>
 
-                    <h2 className={styles.indexSubtitle}>
-                        
-                        {lang == "EN" ? "Great job on todayʼs puzzle! Check out your progress." : "¡Buen trabajo con el rompecabezas de hoy! Comprueba tu progreso."}
-                        
-                    </h2>
+                    <h2 className={styles.indexSubtitle}>{wonIndex.indexSubtitle}</h2>
 
                 </section>
 
@@ -60,7 +68,7 @@ const WonIndex = () => {
 
                     <Link to="/play?=stats" className={styles.indexBtn} btnevent="play">
                         
-                        <p className={styles.btnText}>{lang == "EN" ? "See Stats" : "Ver Estadísticas"}</p>
+                        <p className={styles.btnText}>{wonIndex.statsBtn}</p>
                         
                     </Link>
 
@@ -68,11 +76,7 @@ const WonIndex = () => {
 
                 <section className={styles.indexInfo}>
 
-                    <p className={styles.infoDate}>
-                        
-                        {lang == "EN" ? dateEN : dateES}
-                        
-                    </p>
+                    <p className={styles.infoDate}>{date()}</p>
 
                     <p>No. 1</p>
 

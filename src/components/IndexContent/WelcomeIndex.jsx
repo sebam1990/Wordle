@@ -1,5 +1,7 @@
 // Import dependencies
 
+    import {useContext} from "react"
+
     import {Link} from "react-router-dom"
 
 // Import styles
@@ -8,27 +10,37 @@
 
     import globalStyles from "../../globalStyles.module.scss"
 
+// Import context
+
+    import {ConfigContext} from "../../context/CreateContext.jsx"
+
+// Import translates
+
+    import languages from "../../utils/languages.js"
+
+// Import date
+
+    import {dates} from "../../utils/dates.js"
+
 const WelcomeIndex = () => {
 
-    // Get language from wordleConfig
+    // useContext
 
-        const wordleConfig = JSON.parse(localStorage.getItem("wordle-config"))
+        const configContext = useContext(ConfigContext)
 
-        const lang = wordleConfig.lang
+    // Import lang from context
 
-    // Create date
+        const {lang} = configContext
 
-        const today = new Date()
+    // Import translates
 
-        const monthES = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"]
+        const globalTranslate = languages[lang]
 
-        const monthEN = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+        const {welcomeIndex} = globalTranslate
 
-        const indexMonth = today.getMonth();
+    // Get date
 
-        const dateEN = `${monthEN[indexMonth]} ${today.getDate()}, ${today.getFullYear()}`
-
-        const dateES = `${today.getDate()} de ${monthES[indexMonth]}, ${today.getFullYear()}`
+        const date = dates[lang]
 
     return(
 
@@ -48,7 +60,7 @@ const WelcomeIndex = () => {
 
                     <h2 className={styles.indexSubtitle}>
                         
-                        {lang == "EN" ? "Get 6 chances to guess a 5-letter word." : "Obtenga 6 oportunidades para adivinar una palabra de 5 letras."}
+                        {welcomeIndex.indexSubtitle}
                         
                     </h2>
 
@@ -58,19 +70,19 @@ const WelcomeIndex = () => {
 
                     <Link to="/play/?=instructions" className={styles.indexBtn}>
                         
-                        <p className={styles.btnText}>{lang == "EN" ? "How to play" : "¿Cómo jugar?"}</p>
+                        <p className={styles.btnText}>{welcomeIndex.instructionsBtn}</p>
                         
                     </Link>
 
                     <Link to="/play/?=login" className={styles.indexBtn}>
                         
-                        <p className={styles.btnText}>{lang == "EN" ? "Log in" : "Iniciar sesión"}</p>
+                        <p className={styles.btnText}>{welcomeIndex.loginBtn}</p>
                         
                     </Link>
 
                     <Link to="/play" className={styles.indexBtn} btnevent="play">
                         
-                        <p className={styles.btnText}>{lang == "EN" ? "Play" : "Jugar"}</p>
+                        <p className={styles.btnText}>{welcomeIndex.playBtn}</p>
                         
                     </Link>
 
@@ -80,7 +92,7 @@ const WelcomeIndex = () => {
 
                     <p className={styles.infoDate}>
                         
-                        {lang == "EN" ? dateEN : dateES}
+                        {date()}
                         
                     </p>
 

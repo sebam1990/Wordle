@@ -1,5 +1,7 @@
 // Import dependencies
 
+    import {useContext} from "react"
+
     import {Link} from "react-router-dom"
 
 // Import styles
@@ -8,33 +10,37 @@
 
     import globalStyles from "../../globalStyles.module.scss"
 
+// Import context
+
+    import {ConfigContext} from "../../context/CreateContext.jsx"
+
+// Import translates
+
+    import languages from "../../utils/languages.js"
+
+// Import dates
+
+    import {dates} from "../../utils/dates.js"
+
 const ContinueIndex = () => {
 
-    // Get language from wordleConfig
+    // useContext
 
-        const wordleConfig = JSON.parse(localStorage.getItem("wordle-config"))
+        const configContext = useContext(ConfigContext)
 
-        const lang = wordleConfig.lang
+    // Import lang from context
 
-    // Get actual chance from wordlePlay
+        const {lang} = configContext
 
-        const wordlePlay = JSON.parse(localStorage.getItem("wordle-play"))
+    // Import translates
 
-        const chance = wordlePlay.guess
+        const globalTranslate = languages[lang]
 
-    // Create date
+        const {continueIndex} = globalTranslate
 
-        const today = new Date()
+    // Get date
 
-        const monthES = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"]
-
-        const monthEN = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
-
-        const indexMonth = today.getMonth();
-
-        const dateEN = `${monthEN[indexMonth]} ${today.getDate()}, ${today.getFullYear()}`
-
-        const dateES = `${today.getDate()} de ${monthES[indexMonth]}, ${today.getFullYear()}`
+        const date = dates[lang]
 
     return(
 
@@ -52,13 +58,11 @@ const ContinueIndex = () => {
 
                 <section className={styles.titleSection}>
 
-                    <h1 className={styles.indexTitle}>{lang == "EN" ? "Welcome Back" : "Bienvenido de nuevo"}</h1>
+                    <h1 className={styles.indexTitle}>{continueIndex.indexTitle}</h1>
 
                     <h2 className={styles.indexSubtitle}>
                         
-                        {lang == "EN" ? `Youʼre on attempt ${chance} out of 6. Keep it up!` : `Estás en el intento ${chance} de 6. ¡Sigue así!`}
-                        
-                    </h2>
+                        {continueIndex.indexSubtitle[0] + "X" + continueIndex.indexSubtitle[1]}</h2>
 
                 </section>
 
@@ -66,7 +70,7 @@ const ContinueIndex = () => {
 
                     <Link to="/play?=continue" className={styles.indexBtn} btnevent="play">
                         
-                        <p className={styles.btnText}>{lang == "EN" ? "Continue" : "Continuar"}</p>
+                        <p className={styles.btnText}>{continueIndex.indexBtn}</p>
                         
                     </Link>
 
@@ -76,7 +80,7 @@ const ContinueIndex = () => {
 
                     <p className={styles.infoDate}>
                         
-                        {lang == "EN" ? dateEN : dateES}
+                        {date()}
                         
                     </p>
 

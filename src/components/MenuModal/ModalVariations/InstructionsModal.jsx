@@ -1,10 +1,10 @@
 // Import dependencies
 
+    import {useContext} from "react"
+
     import {Link} from "react-router-dom"
 
 // Import styles
-
-    //import styles from "./MenuModal.module.scss"
 
     import styles from "./InstructionsModal.module.scss"
 
@@ -14,13 +14,29 @@
 
     import GridRow from "../../GridRow/GridRow.jsx"
 
+// Import context
+
+    import {ConfigContext} from "../../../context/CreateContext.jsx"
+
+// Import translates
+
+    import languages from "../../../utils/languages.js"
+
 const InstructionsModal = () => {
 
-    // Get language from wordleConfig
+    // useContext
 
-        const wordleConfig = JSON.parse(localStorage.getItem("wordle-config"))
+    const configContext = useContext(ConfigContext)
 
-        const lang = wordleConfig.lang
+    // Import lang from context
+
+        const {lang} = configContext
+
+    // Import translates
+
+        const globalTranslate = languages[lang]
+
+        const {instructionsModal} = globalTranslate
 
     return(
 
@@ -28,15 +44,15 @@ const InstructionsModal = () => {
         
             <header>
 
-                <h1 className={styles.instructionsTitle}> {lang == "EN" ? "How To Play" : "¿Cómo Jugar?"} </h1>
+                <h1 className={styles.instructionsTitle}> {instructionsModal.instructionsTitle} </h1>
 
-                <h2 className={styles.instructionsSubtitle}> {lang == "EN" ? "Guess the Wordle in 6 tries." : "Adivina la palabra en 6 intentos."} </h2>
+                <h2 className={styles.instructionsSubtitle}> {instructionsModal.instructionsSubtitle} </h2>
 
                 <ul className={styles.instructionsList}>
 
-                    <li> {lang == "EN" ? "Each guess must be a valid 5-letter word." : "Cada respuesta debe ser una palabra válida de 5 letras."} </li>
+                    <li> {instructionsModal.instructionList[0]} </li>
 
-                    <li> {lang == "EN" ? "The color of the tiles will change to show how close your guess was to the word." : "El color de las celdas cambiará para mostrar qué tan cerca estuvo su suposición de la palabra."} </li>
+                    <li> {instructionsModal.instructionList[1]} </li>
 
                 </ul>
 
@@ -44,13 +60,17 @@ const InstructionsModal = () => {
 
             <section className={styles.examplesSection}>
 
-                <p className={styles.examplesTitle}> {lang == "EN" ? "Examples" : "Ejemplos"} </p>
+                <p className={styles.examplesTitle}> {instructionsModal.examplesTitle} </p>
 
                 <article className={styles.examplesArticle}>
 
                     <GridRow rowWord="ACTOR" cellState={["correct","idle","idle","idle","idle"]} mode="modal"></GridRow>
 
-                    {lang == "EN" ? <p className={styles.examplesText}><strong>A</strong>  is in the word and in the correct spot.</p> : <p className={styles.examplesText}><strong>A</strong> está en la palabra y en el lugar correcto.</p>}
+                    <p className={styles.examplesText}>
+
+                        <strong>{instructionsModal.examplesArticle1[0]}</strong>{instructionsModal.examplesArticle1[1]}
+
+                    </p>
 
                 </article>
 
@@ -58,15 +78,23 @@ const InstructionsModal = () => {
 
                     <GridRow rowWord="HOTEL" cellState={["idle","present","idle","idle","idle"]} mode="modal"></GridRow>
 
-                    {lang == "EN" ? <p className={styles.examplesText}><strong>O</strong>  is in the word but in the wrong spot.</p> : <p className={styles.examplesText}><strong>O</strong> está en la palabra pero en el lugar equivocado.</p>}
+                    <p className={styles.examplesText}>
 
+                        <strong>{instructionsModal.examplesArticle2[0]}</strong>{instructionsModal.examplesArticle2[1]}
+
+                    </p>
+                    
                 </article>
 
                 <article className={styles.examplesArticle}>
 
                     <GridRow rowWord="FINAL" cellState={["idle","idle","idle","absent","idle"]} mode="modal"></GridRow>
 
-                    {lang == "EN" ? <p className={styles.examplesText}><strong>A</strong> is not in the word in any spot.</p> : <p className={styles.examplesText}><strong>A</strong> no está en la palabra en ningún lugar.</p>}
+                    <p className={styles.examplesText}>
+
+                        <strong>{instructionsModal.examplesArticle3[0]}</strong>{instructionsModal.examplesArticle3[1]}
+
+                    </p>
 
                 </article>
 
@@ -78,7 +106,7 @@ const InstructionsModal = () => {
 
                 <p className={styles.loginText}>
 
-                    <Link to="/login" target="_blank" className={styles.loginLink}> {lang == "EN" ? "Log in or create a free account" : "Accede o crea una cuenta gratis"} </Link> {lang == "EN" ? "to link your stats." : "para vincular tus estadísticas."}
+                    <Link to="/login" target="_blank" className={styles.loginLink}> {instructionsModal.loginSectionText[0]} </Link> {instructionsModal.loginSectionText[1]}
 
                 </p>
 
@@ -88,7 +116,7 @@ const InstructionsModal = () => {
 
                 <p className={styles.loginText}>
 
-                    {lang == "EN" ? "A new puzzle is released daily at midnight. If you haven’t already, you can " : "Cada medianoche se lanza un nuevo rompecabezas. Si aún no lo has hecho, puedes "}<Link to="/reminder" target="_blank" className={styles.loginLink}> {lang == "EN" ? "sign up" : "registrarte"} </Link> {lang == "EN" ? "for our daily reminder email." : "a nuestro email de recordatorio."}
+                    {instructionsModal.reminderSectionText[0]} <Link to="/reminder" target="_blank" className={styles.loginLink}> {instructionsModal.reminderSectionText[1]} </Link> {instructionsModal.reminderSectionText[2]}
 
                 </p>
 
