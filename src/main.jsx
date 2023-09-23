@@ -24,9 +24,9 @@
 ReactDOM.createRoot(document.getElementById("root")).render(
 
     <BrowserRouter>
-    
-        <ConfigProvider>
 
+        <ConfigProvider>
+            
             <PlayProvider>
 
                 <Routes>

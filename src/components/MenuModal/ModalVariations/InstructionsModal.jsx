@@ -50,9 +50,9 @@ const InstructionsModal = () => {
 
                 <ul className={styles.instructionsList}>
 
-                    <li> {instructionsModal.instructionList[0]} </li>
+                    <li> {instructionsModal.instructionsList[0]} </li>
 
-                    <li> {instructionsModal.instructionList[1]} </li>
+                    <li> {instructionsModal.instructionsList[1]} </li>
 
                 </ul>
 

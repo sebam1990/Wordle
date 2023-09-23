@@ -28,7 +28,7 @@ const english = {
 
         instructionsTitle: "How To Play",
         instructionsSubtitle: "Guess the Wordle in 6 tries.",
-        instructionList: ["Each guess must be a valid 5-letter word.", "The color of the tiles will change to show how close your guess was to the word."],
+        instructionsList: ["Each guess must be a valid 5-letter word.", "The color of the tiles will change to show how close your guess was to the word."],
         examplesTitle: "Examples",
         examplesArticle1: ["A", " is in the word and in the correct spot."],
         examplesArticle2: ["O", " is in the word but in the wrong spot."],
@@ -162,7 +162,7 @@ const spanish = {
 
         statsTitle: "ESTADÍSTICAS",
         markerText: ["Jugados", "%Victorias", "Racha actual", "Mejor Racha"],
-        distributionTitle: "DISTRIBUCIÓN DEINTENTOS",
+        distributionTitle: "DISTRIBUCIÓN DE INTENTOS",
         loginLink: "Accede o crea una cuenta gratis para vincular tus estadísticas.",
         shareBtnText: "Compartir"
 
@@ -185,4 +185,4 @@ const spanish = {
 
 }
 
-export default {EN: english, ES: spanish}
+export default {langList: languageList, EN: english, ES: spanish}

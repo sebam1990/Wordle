@@ -20,21 +20,13 @@ const KeyboardRow = (props) => {
 
         const [playContext, setPlayContext] = useContext(PlayContext)
 
-    // Get  language from configContext
-
-        const lang = configContext.lang;
-    
-    // Set enter innter text
-
-        let enterText = ""
-
-        lang == "ES" ? enterText = "ENVIAR" : enterText = "ENTER"
-
     // Get props
 
         const keys = props.keysArray
 
         const keyState = props.keyState
+
+        const enterKey = props.enter
 
     // Get error colors codes fo
 
@@ -62,19 +54,14 @@ const KeyboardRow = (props) => {
 
                 keys.map((letter, index) => {
 
-                    if(letter == "ENVIAR"){
+                    if(letter == enterKey){
 
-                        return <button key={index} className={`${styles.keyBtn} ${styles.enterKey}`} id={"Key"+letter} onClick={enterEvent}>{enterText}</button>
+                        return <button key={index} className={`${styles.keyBtn} ${styles.enterKey}`} id={"Key"+letter} onClick={enterEvent}>{letter}</button>
 
                     }
                     else if(letter == "Backspace"){
 
                         return <button key={index} className={`${styles.keyBtn} ${styles.backKey}`} id={letter} onClick={(e) => {playContext.writeWord(e)}}> <MdOutlineBackspace size={20}/> </button>
-
-                    }
-                    else if(letter == "Ñ" && lang == "EN"){
-
-                        return undefined
 
                     }
                     else{

@@ -102,7 +102,7 @@ const Keyboard = () => {
 
             <KeyboardRow keysArray={keyboard.letterRows[1]} keyState={keyState[1]}></KeyboardRow>
 
-            <KeyboardRow keysArray={keyboard.letterRows[2]} keyState={keyState[2]} keyColors={keyColors}></KeyboardRow>
+            <KeyboardRow keysArray={keyboard.letterRows[2]} enter={keyboard.letterRows[2][0]} keyState={keyState[2]} keyColors={keyColors}></KeyboardRow>
 
         </section>
 

@@ -2,7 +2,7 @@
 
     import {useContext} from "react"
 
-    import {Link} from "react-router-dom"
+    import {Link, useSearchParams, useHref} from "react-router-dom"
 
 // Import styles
 
@@ -23,6 +23,12 @@
     import {dates} from "../../utils/dates.js"
 
 const WelcomeIndex = () => {
+
+    // Search params
+
+        const [searchParams, setSearchParams] = useSearchParams()
+
+        console.log(searchParams);
 
     // useContext
 
@@ -68,7 +74,7 @@ const WelcomeIndex = () => {
 
                 <section className={`${styles.indexMenu} ${globalStyles.flexHorizontalCenter}`}>
 
-                    <Link to="/play/?=instructions" className={styles.indexBtn}>
+                    <Link to="/play/" className={styles.indexBtn}>
                         
                         <p className={styles.btnText}>{welcomeIndex.instructionsBtn}</p>
                         

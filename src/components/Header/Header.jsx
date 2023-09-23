@@ -1,7 +1,7 @@
 // Import dependencies
 
     import { useContext, useState, useEffect } from 'react'
-    import {Link} from "react-router-dom"
+    import {Link, useLocation} from "react-router-dom"
 
 // Import styles
 
@@ -22,29 +22,37 @@
 
     import Modal from "../MenuModal/MenuModal.jsx"
 
+    import LanguageMenu from "../LanguageMenu/LanguageMenu.jsx"
+
+// Import translates
+
+    import languages from "../../utils/languages.js"
+
 const Header = () => {
 
     // useContext
 
         const configContext = useContext(ConfigContext)
 
-    // Context vars
+    // Import lang from context
 
-        const lang = configContext.lang
+        const {lang} = configContext
 
-    // Change language
+    // Import translates
 
-        const changeLang = () => {
+        const globalTranslate = languages[lang]
 
-            lang == "ES" ? configContext.setLang("EN") : configContext.setLang("ES")
-
-        }
+        const {header} = globalTranslate
     
     // URL vars
 
-        const url = window.location.pathname
+        //const url  = window.location.pathname
 
-        const urlFull = window.location.search
+        const location = useLocation()
+
+        const url = location.pathname;
+
+        const urlFull = location.search
 
     // Open and close modal with buttons
 
@@ -79,39 +87,43 @@ const Header = () => {
 
             {showModal == true ? <Modal modalToggle={modalToggle} type={modalType}/> : undefined}
 
-            {url == "/" ? undefined :
+            {
 
-                <header className={`${globalStyles.flex} ${styles.header}`}>
+                url === "/" ? undefined :                     
+                
+                    <header className={`${globalStyles.flex} ${styles.header}`}>
 
-                    <section className={`${globalStyles.flex} ${globalStyles.flex_30} ${styles.headerLang}`}>
+                        <section className={`${globalStyles.flexHorizontalCenter} ${globalStyles.flex_30} ${styles.headerLang}`}>
 
-                        {lang == "ES" ? <button className={`${styles.headerSwitch} ${styles.switchEsp}`} onClick={changeLang}></button> : <button className={`${styles.headerSwitch} ${styles.switchEng}`} onClick={changeLang}></button>}
+                            <LanguageMenu></LanguageMenu>
 
-                    </section>
+                        </section>
 
-                    <section className={`${globalStyles.flex} ${globalStyles.flex_30} ${styles.headerTitle}`}>
+                        <section className={`${globalStyles.flex} ${globalStyles.flex_30} ${styles.headerTitle}`}>
 
-                        <h1 className={styles.headerH1}>Wordle</h1>
+                            <h1 className={styles.headerH1}>Wordle</h1>
 
-                    </section>
+                        </section>
 
-                    <nav className={`${globalStyles.flex} ${globalStyles.flex_30} ${styles.headerNav}`}>
+                        <nav className={`${globalStyles.flex} ${globalStyles.flex_30} ${styles.headerNav}`}>
 
-                        <button className={styles.headerBtn} onClick={() => modalToggle("instructions")}> <MdHelpOutline size={28} />  </button>
+                            <button className={styles.headerBtn} onClick={() => modalToggle("instructions")}> <MdHelpOutline size={28} />  </button>
 
-                        <button className={styles.headerBtn} onClick={() => modalToggle("stats")}> <IoStatsChartOutline size={28}/>  </button>
+                            <button className={styles.headerBtn} onClick={() => modalToggle("stats")}> <IoStatsChartOutline size={28}/>  </button>
 
-                        <button className={styles.headerBtn} onClick={() => modalToggle("settings")}> <BsFillGearFill size={28}/> </button>
+                            <button className={styles.headerBtn} onClick={() => modalToggle("settings")}> <BsFillGearFill size={28}/> </button>
 
-                        <Link className={styles.loginBtn} to="/login" target="_blank">
+                            <Link className={styles.loginBtn} to="/login" target="_blank">
 
-                            <p className={styles.btnText}>{lang == "ES" ? "Iniciar Sesión" : "Login"}</p>
+                                <p className={styles.btnText}>{header.loginBtn}</p>
 
-                        </Link>
+                            </Link>
 
-                    </nav>
+                        </nav>
 
-            </header>}
+                    </header>
+
+            }
 
         </>
 
