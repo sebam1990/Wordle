@@ -14,6 +14,12 @@
 
     import {MdArrowDropDown} from "react-icons/md"
 
+// Import externals components
+
+    import {DownOutlined} from "@ant-design/icons"
+
+    import { Dropdown, Button, Space } from 'antd'
+
 // Import context
 
     import {ConfigContext} from "../../context/CreateContext.jsx"
@@ -44,21 +50,11 @@ const LanguageMenu = () => {
 
         const activeFlagUrl = "src/assets/flags/" + lang + ".png"
 
-    // Open menu state
-
-        const [openMenu, setOpenMenu] = useState("false");
-
-    // Menu toggle function
-
-        const listToggle = () => {
-
-            openMenu == "false" ? setOpenMenu("true") : setOpenMenu("false");
-
-        }
-
     // Change language function
 
-        const changeLang = (newLang) => {
+        const changeLang = (e) => {
+
+            const newLang = e.key
 
             setLang(newLang)
 
@@ -66,61 +62,54 @@ const LanguageMenu = () => {
 
             localStorage.setItem("wordle-config", JSON.stringify(wordleConfig))
 
-            setOpenMenu("false")
-
         }
+    
+    // Menu items
 
-    return(
+        const items = []
 
-        <>
+        Object.keys(langList).map((key, index) => {
 
-            <section className={styles.activeLang}>
+            const itemFlagUrl = "src/assets/flags/" + key + ".png"
 
-                <button className={`${headerStyles.loginBtn} ${globalStyles.flexAllCenter} ${styles.langBtn}`} onClick={listToggle} clicked={openMenu}>
+            const newItem = {
 
-                    <img className={styles.langImg} src={activeFlagUrl} alt={lang + " language"} clicked={openMenu}></img>
-
-                    <p className={styles.langText}>{langList[lang]} <MdArrowDropDown></MdArrowDropDown></p>
-
-                </button>
-
-            </section>
-
-            {
-
-                openMenu == "true" ?             
-                
-                    <section className={styles.langList} onMouseLeave={listToggle}>
-
-                        {
-
-                            Object.keys(langList).map((key, index) => {
-
-                                const itemFlagUrl = "src/assets/flags/" + key + ".png"
-
-                                return(
-
-                                    <button key={index} className={`${headerStyles.loginBtn} ${globalStyles.flexAllCenter} ${styles.langBtn}`} onClick={() => changeLang(key)}>
-
-                                        <img className={styles.langImg} src={itemFlagUrl} alt={key + " language"}></img>
-
-                                        <p className={styles.langText}>{langList[key]}</p>
-
-                                    </button>			
-
-                                )
-
-                            })
-
-                        }
-                        
-                    </section> : 
-            
-                undefined
+                label: <p className={styles.itemText}>{langList[key]}</p>,
+                key: key,
+                icon: <img className={styles.langImg} src={itemFlagUrl} alt={key + " language"}></img>
 
             }
 
-        </>
+            items.push(newItem)
+
+        })
+
+        const menuProps = {items, onClick: changeLang}
+
+    return(
+
+        <section>
+
+            <Space wrap>
+
+                <Dropdown menu={menuProps} className={`${headerStyles.loginBtn} ${globalStyles.flexAllCenter} ${styles.langMenu}`} overlayClassName={styles.langList}>
+
+                    <Button className={`${globalStyles.flex} ${styles.langBtn}`}>
+
+                        <img className={styles.langImg} src={activeFlagUrl} alt={lang + " language"}></img>
+
+                        <Space className={styles.langText}>{langList[lang]}</Space>
+
+                        <DownOutlined />
+
+                    </Button>
+
+                </Dropdown>
+
+            </Space>
+
+
+        </section>
 
     )
 
