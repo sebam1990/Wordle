@@ -19,6 +19,7 @@
 
     import Index from './Index.jsx'
     import Game from "./routes/Game/Game.jsx";
+    import Auth from "./routes/Auth/Auth.jsx";
     import Error from "./routes/Error/Error.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
@@ -35,7 +36,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
 
                     <Route path="/play" element={<Game />}></Route>
 
-                    <Route path="/login"></Route>
+                    <Route path="/auth" element={<Auth />}></Route>
 
                     <Route path="/reminder"></Route>
 

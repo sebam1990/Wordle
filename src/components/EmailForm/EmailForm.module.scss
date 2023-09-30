@@ -1,0 +1,170 @@
+@import "../../fonts/cheltenham_bold/stylesheet.css";
+@import "../../fonts/franklin-normal-300/stylesheet.css";
+@import "../../fonts/franklin-normal-700/stylesheet.css";
+
+// Normalize h1 weigth
+
+    h1{
+
+        font-weight:normal;
+
+    }
+
+// loginSection
+
+    .loginSection{
+
+        width: 450px;
+        margin: 0rem auto;
+        margin-top:40px;
+
+    }
+
+// loginTitle
+
+    .loginTitle{
+
+        font-family:"cheltenhambold";
+        font-size:30px;
+        text-align:center;
+        color:#121212;
+
+    }
+
+// loginForm
+
+    .loginForm{
+
+        flex-direction:column;
+        //margin-bottom:24px;
+
+    }
+
+    // formLabel
+
+        .formLabel{
+
+            font-family:"nytfranklinbold";
+            font-size:14px;
+            margin-top:1rem;
+            margin-bottom:4px;
+
+        }
+
+    // formInput
+
+        .formInput{
+
+            height:44px;
+            padding:0rem 12px;
+            font-family:"nytfranklinlight";
+            font-size:1rem;
+            border:solid 1px black;
+            border-radius:3px;
+
+        }
+
+    // formError
+
+        .formError{
+
+            padding-top:8px;
+
+        }
+
+        .formError img{
+
+            width:1rem;
+            height:1rem;
+            margin-right:8px;
+
+        }
+
+        .formError p{
+
+            font-family:"nytfranklinlight";
+            font-size:14px;
+            color:#A61717;
+
+        }
+
+    // formBtn
+
+        .formBtn{
+
+            height:44px;
+            margin-top:1rem;
+            font-family:"nytfranklinbold";
+            font-size:1rem;
+            color:white;
+            background-color:black;
+            border:none;
+            border-radius:3px;
+            cursor:pointer;
+
+        } 
+
+        .formBtn:hover{
+
+            background-color:#333333;
+
+        }
+
+// spinner
+
+    .spinner{
+
+        width:40px;
+        height:40px;
+
+    }
+
+// separator
+
+    .separator::after, .separator::before{
+
+        display:block;
+        height:1px;
+        background-color:#E2E2E2;
+        content:"";
+
+    }
+
+    .separator{
+
+        display:grid;
+        grid-template-columns:45% 10% 45%;
+        align-items:center;
+        margin:12px 0rem;
+        font-family:"nytfranklinlight";
+        font-size:14px;
+        text-align:center;
+
+    }
+
+// socialBtn
+
+    .socialBtn{
+
+        width:100%;
+        height:44px;
+        margin-top:8px;
+        font-family:"nytfranklinbold";
+        font-size:1rem;
+        color:black;
+        background-color:white;
+        border:solid 1px black;
+        border-radius:3px;
+        cursor: pointer;
+
+    }
+
+// socialIcon
+
+    .socialIcon{
+
+        width:18px;
+        height:18px;
+        margin-right:8px;
+
+    }

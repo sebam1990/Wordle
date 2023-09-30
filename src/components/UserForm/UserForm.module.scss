@@ -1,0 +1,125 @@
+// Import styeles
+
+    @import "../../fonts/franklin-normal-300/stylesheet.css";
+    @import "../../fonts/franklin-normal-700/stylesheet.css";
+
+// loginSection
+
+    .loginSection{
+
+        overflow-y:hidden;
+        //height:136px;
+
+        animation-name:stretchAnimation;
+        animation-duration:500ms;
+        animation-timing-function:ease-in;
+        animation-fill-mode:forwards;
+
+    }
+
+// loginTitle
+
+    .loginTitle{
+
+        font-size:30px;
+
+    }
+
+// inputRow
+
+    .inputRow{
+
+        border:solid 1px #999999;
+        border-radius:3px;
+
+    }
+
+    // formInput
+
+        .formInput{
+
+            width:84.80%;
+            height:44px;
+            padding-left:0.75rem;
+            font-family:"nytfranklinlight";
+            font-size:1rem;
+            border:none;
+
+        }
+
+            .formInput:focus{
+
+                outline:none
+
+            }
+
+            .formInput[type="email"]{
+
+                color:#999999;
+
+            }
+
+        // checkboxSection
+        
+            .checkboxSection{
+
+                margin-top:1rem;
+
+            }
+
+        // checkboxInput
+
+            .checkboxInput{
+
+                width:21px;
+                height:21px;
+                accent-color:black;
+
+            }
+
+        // checkboxText
+
+            .checkboxText{
+
+                margin-left:8px;
+                font-family:"nytfranklinlight";
+                font-size:14px;
+
+            }
+
+        // inputBtn
+
+            .inputBtn{
+
+                width:12.44%;
+                height:44px;
+                font-family:"nytfranklinbold";
+                font-size:1rem;
+                background:none;
+                border:none;
+                cursor: pointer;
+
+            }
+
+                .inputBtn[state="disabled"]{
+
+                    color:#999999;
+
+                }
+
+                .inputBtn[label="pass"]:active{
+
+                    transition:all 0.1s ease-in-out 0s;
+                    background-color:#EBEBEB;
+
+                }
+
+// Loading animation
+
+    @keyframes stretchAnimation {
+
+        0% {height:136px}
+
+        100% {height:310px}
+        
+    }
